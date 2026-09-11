@@ -1,13 +1,5 @@
-# Annotated Baby Rudin
+# A working MLE's guide to generative models
 
-This [blog](https://uselesstechjunks.github.io/annotated_baby_rudin/index.html) contains my filler notes for Principles of Mathematical Analysis by Walter D. Rudin.
+I recently gave a talk on Generative Models. This [blog](https://uselesstechjunks.github.io/generative_models_mle/index.html) is a companion note for that presentation. 
 
-## How to Enable GitHub Pages?
-```
-Settings → Pages
-Under Build and deployment:
-  Source: Deploy from a branch
-  Branch: main
-  Folder: /docs
-  Click Save
-```
+I am unable to host the exact content of the slides due to various reasons. However, the content covered here is designed to be self-sufficient.
