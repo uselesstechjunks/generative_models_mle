@@ -16,17 +16,17 @@
     ☀ Light
   </button>
   <main>
-    <h1>A working MLE's guide to SOTA generative models</h1>
-    <p>
-      I recently (September 2026) gave a talk on SOTA Generative Models. These are my companion notes for that presentation. I am unable to share the content of the slides here due to various reasons. However, the material covered here is designed to be self-sufficient.
-    </p>
-    <h3>A few words about the scope</h3>
-    <div>
-      <p>I keep the scope limited to understanding models that generate sample for various modalities in a non-autoregressive way. While autoregressive models are getting better, at the time of this write-up, flow/diffusion-based models are still considered state-of-the-art (SOTA) across various modalities such as images, videos, or protein structure synthesis.</p>
+<h1>A working MLE's guide to SOTA generative models</h1>
+<h4> Published on September, 2026</h4>
+<p>I recently (September 2026) gave a talk on SOTA Generative Models at work. These are my companion notes for that presentation. I am unable to share the content of the slides here. However, the material covered in this article is designed to be self-sufficient.</p>
+    
+<h3>A few words about the scope</h3>
+<div>
+<p>I keep the scope limited to understanding models that generate sample for various modalities in a non-autoregressive way. While autoregressive models are getting better, flow/diffusion-based models are still (at the time of writing) considered state-of-the-art (SOTA) across various modalities such as images, videos, or protein structure synthesis.</p>
 
-<p>We deliberately do not cover neural architecture of these models here. This choice is made primarily due to 2 reasons - (a) it's not architectural innovations that made these models SOTA, rather it was the mathematical insight that unified flow/diffusion models under a single framework, making training these models impressively easier and (b) the architecture part of these models should be familiar to anyone with a minimal working knowledge about the transformer architecture, with perhaps one exception about variolational autoencoders, which, I believe deserves a separate article on their own rights.</p>
+<p>I deliberately do not cover neural architecture of these models here. This choice is made primarily due to 2 reasons - (a) it's not architectural innovations that made these models SOTA; it was the mathematical insight that unified flow/diffusion models under a single framework, making training these models impressively easier and (b) the architecture part of these models should be familiar to MLEs, even with a minimal working knowledge about the transformer architecture, with perhaps one exception about variational autoencoders (VAEs), which, I believe deserves a separate article on their own right.</p>
 
-<p>At the time of writing, most of the SOTA models across modalities (images: nano-banana pro, videos: minimax H3, protein systhesis: alphafold 3) use the flow/diffusion setup established by the stochastic interpolants framework. This would be the primary focus of this article.</p>
+<p>At the time of writing, most of the SOTA models across modalities (images: Nano Banana Pro, videos: MiniMax H3, protein systhesis: AlphaFold 3) use the flow/diffusion framing established by the stochastic interpolants formulation. Gathering an intuitive understanding of how these models work would be the primary focus of this article.</p>
 
 <h3>A few words for people who know DDPM</h3>
 <p>People who are familiar with original diffusion models (e.g., DDPM) might find a few things presented differently (e.g., there are no forward or reverse process). However, the new framework makes this more sound pedagogically. A brief callout to earlier diffusion models is made in chapter 4.</p>
