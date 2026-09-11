@@ -3,7 +3,7 @@
 These should be familiar to most MLEs. Therefore, the content here is meant for a quick refresher.
 
 ## Probability
-- We're dealing with sample space $\Omega$ and a continuous random variable $X:\Omega\mapsto\mathbb{R}$.
+- We have a sample space $\Omega$ and a continuous scalar valued random variable $X:\Omega\mapsto\mathbb{R}$.
 - Densities are defined by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}\mapsto\mathbb{R}_{\geq 0}$).
 - Distribution is defined by uppercase $F$ (e.g., $F_X(x):\mathbb{R}\mapsto[0,1]$) where
 
@@ -20,8 +20,32 @@ $$
 We only need to recall a handful of results.
 
 ### Joint and marginal densities
+- Joint density
+
+$$
+p_{X,Y}(x,y)=\frac{d}{dx}F_{X,Y}(x,y)
+$$
+
+- Marginals are obtained by integrating out one variable.
+
+$$
+p_X(x)=\int_{\mathbb{R}}p_{X,Y}(x,y)\mathop{dy}
+$$
+
+### Conditional density
+- Assuming $p_Y(y) > 0$
+
+$$
+p_{X}(x|y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}
+$$
+
+- This is a descriptor for probability $\mathbb{P}(X|Y=y)$, implying the only random variable here is $X$, while $Y$ is no longer random (takes a constant value $y$).
 
 ### Bayes' theorem
+
+$$
+p_{X}(x|y)=\frac{p_{X,Y}(x,y)}{p_Y(y)=\int_{\mathbb{R}}p_{X,Y}(x,y)\mathop{dx}}=\frac{p_Y(y|x)p_X(x)}{\int_{\mathbb{R}}p_Y(y|x)p_X(x)\mathop{dx}}
+$$
 
 ### Expectations
 
