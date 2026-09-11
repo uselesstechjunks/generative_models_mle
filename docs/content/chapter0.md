@@ -4,13 +4,13 @@ These should be familiar to most MLEs. Therefore, the content here is meant for 
 
 ## Probability
 - We're dealing with sample space $\Omega$ and a continuous random variable $X:\Omega\mapsto\mathbb{R}$.
-- Densities are defined by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}\mapsto\mathbb{R}^+$).
+- Densities are defined by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}\mapsto\mathbb{R}_{\geq 0}$).
 - Distribution is defined by uppercase $F$ (e.g., $F_X(x):\mathbb{R}\mapsto[0,1]$) where
-- 
-$$
-F_X(x):=\mathbb{P}(X\leq x)=\int\limits_{-\infty}^x p_X(x)\mathop{dx}
 
 $$
+F_X(x):=\mathbb{P}(X\leq x)=\int\limits_{-\infty}^x p_X(x)\mathop{dx}
+$$
+
 - So, the following holds
 
 $$
