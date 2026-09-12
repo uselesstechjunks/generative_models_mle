@@ -1,20 +1,24 @@
-# Chapter 0: Preliminaries
+# Chapter 0: One Pager on Notations & Quick Refresher
 
-These should be familiar to most MLEs. Therefore, the content here is meant for a quick refresher.
+This section contains nothing novel. Most of this would be fairly familiar to most MLEs. So, why put it here? Couple of reasons: (a) I would like to clarify a bit on the notations I've used and (b) in case things are a bit rusty (what was that X thing again?), this is aimed as jogging your memory so you don't have to go back looking these up somewhere else. Things are kept short with almost no explanation as to why these results hold.
+
+## Notations
+- Reals $\mathbb{R}$, d-dimensional real-valued vector space $\mathbb{R}^d$, $\mathbb{R}_{\geq 0}$ is non-negative reals.
 
 ## Probability
-- We have a sample space $\Omega$ and a continuous scalar valued random variable $X:\Omega\mapsto\mathbb{R}$.
-- Densities are defined by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}\mapsto\mathbb{R}_{\geq 0}$).
-- Distribution is defined by uppercase $F$ (e.g., $F_X(x):\mathbb{R}\mapsto[0,1]$) where
+- We have a sample space $\Omega$ and a vector-valued continuous random variable $X:\Omega\mapsto\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
+- Typically boldface characters are used for multidimensional objects (such as $\mathbf{x}\in\mathbb{R}^d$ here), but I've used lowercase $x\in\mathbb{R}^d$ to keep it simple.
+- Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\mapsto\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\mapsto[0,1]$).
 
 $$
-F_X(x):=\mathbb{P}(X\leq x)=\int\limits_{-\infty}^x p_X(x)\mathop{dx}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{-\infty}^x p(x)\mathop{dx}
 $$
 
-- So, the following holds
+- I've omitted the subscript $\cdot_X(\cdot)$ as the random variable in our context is always clear from the argument.
+- The following holds
 
 $$
-  \mathbb{P}(a\leq X\leq b)=F_X(b)-F_X(a)=\int\limits_a^b p_X(x)\mathop{dx}
+  \mathbb{P}(\mathbf{a}\leq X\leq \mathbf{b})=F_X(\mathbf{b})-F_X(\mathbf{a})=\int\limits_\mathbf{a}^\mathbf{b} p_X(\mathbf{x})\mathop{d\mathbf{x}}
 $$ 
 
 We only need to recall a handful of results.
