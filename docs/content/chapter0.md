@@ -1,11 +1,6 @@
 # Chapter 0: One Pager on Notations & Quick Refresher
 
-This section contains nothing novel. I've included it here as
-
-- It would give me a chance to clarify a bit on the notations I've used in these notes, and
-- I've also called out a few results I've used throughout the note with no explanation as to why these hold.
-
-This is kept short as to not bore you with things that you'd already know, but to help me refer to these in the notes.
+Consider this chapter a reference card for the rest of the guide. It grounds our notation and highlights a few standard identities that we will regularly invoke later. It is deliberately brief so you can skim through, get a feel for the notation, and move straight into the core material.
 
 ## Notations
 - $\mathbb{R}$ = Reals
