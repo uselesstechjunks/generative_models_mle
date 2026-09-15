@@ -29,6 +29,7 @@ F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\
 $$
 
 - $X\sim p$ is a shorthand for saying that $X$ has a density $p$.
+- I've often used the subscript of the random variable for the density. For example, if we have a random variable dependent on a scalar parameter $t\in\mathbb{R}^d$, such that $X_t:\Omega\rightarrow\mathbb{R}^d; X:(t,\omega)\mapsto x_t\in\mathbb{R}^d$, I've used $X_t\sim p_t$.
 - For joint density $p(x, y)$, marginals are obtained by integrating out one variable. I use explicit subscripts for specifying the set of the integration variable, e.g., for $Y$ taking values from $\mathbb{R}^m$
 
 $$
