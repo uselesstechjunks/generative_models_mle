@@ -13,7 +13,7 @@ This is kept short as to not bore you with things that you'd already know, but t
 - $\mathbb{R}^d$ = d-dimensional real-valued vector space 
 
 ## Probability
-- We have a sample space $\Omega$ and a vector-valued continuous random variable $X:\Omega\rightarrow\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
+- We have a sample space $\Omega$ and a vector-valued continuous random variable (rv) $X:\Omega\rightarrow\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
 - Typically boldface characters are used for multidimensional objects (such as $\mathbf{x}\in\mathbb{R}^d$ here), but I've used lowercase $x\in\mathbb{R}^d$ to keep it simple. In this notation, $x=\left(x_1,\cdots,x_d\right)^\top$ with $x_i\in\mathbb{R}$ for all $i=1,\cdots,d$.
 - $X\leq x$ applies to every dimension, i.e., $X_i(\omega)\leq x_i$.
 
@@ -51,7 +51,7 @@ $$
 - $Z=\int_{\mathbb{R}^m}p(x|y)p(y)\mathop{dy}$ is the normalising constant making it a valid probability.
 
 ### Expectations
-- Expectation of a function $f:\mathbb{R}^d\rightarrow\mathbb{R}^n$ for $X\sim p$ is defined as the constant
+- Expectation of a function $f:\mathbb{R}^d\rightarrow\mathbb{R}^n$ taking values as per the rv $X\sim p$ is defined as the constant
 
 $$
 \mathbb{E}_{X\sim p}[f(X)]=\int\limits_{\mathbb{R}^d}f(x)p(x)\mathop{dx}
@@ -66,7 +66,7 @@ $$
 - I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
 
 ### Law of total expectation
-- Using the subscript notation for marginals, 
+- Using the subscript notation for marginal densities, 
 
 $$
 \mathbb{E}_{Y\sim p_Y}[Y]=\mathbb{E}_{X\sim p_X}\left[\mathbb{E}_{Y\sim p(\cdot|x)}[Y]\right]
@@ -75,7 +75,7 @@ $$
 - This follows from
 
 $$
-\mathbb{E}_{Y\sim p_Y}[Y]=\int\limits_{\mathbb{R}^m} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathbb{R}^m} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
+\mathbb{E}_{Y\sim p_Y}[Y]=\int\limits_{\mathbb{R}^m} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathbb{R}^m} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} \left( \int\limits_{\mathbb{R}^m} y\cdot p(y|x)\mathop{dy}\right)p(x)\mathop{dx}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
 $$
 
 - Here $r(x)=\mathbb{E}_{Y\sim p(\cdot|x)}[Y]$. This $r$, known as the regression function, is also the minimiser of the $L_2$ loss
