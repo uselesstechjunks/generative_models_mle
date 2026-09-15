@@ -21,7 +21,7 @@ F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\
 $$
 
 - $X\sim p$ is a shorthand for $X$ has a density $p$.
-- For joint density $p(x, y)$, marginals are obtained by integrating out one variable. For $Y$ taking values from $\mathbb{R}^m$,
+- For joint density $p(x, y)$, marginals are obtained by integrating out one variable. For $Y$ taking values from $\mathbb{R}^m$, I use explicit subscript for the variable of integrals
 
 $$
 p(x)=\int_{\mathbb{R}^m}p(x,y)\mathop{dy}
