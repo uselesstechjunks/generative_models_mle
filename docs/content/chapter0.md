@@ -7,21 +7,29 @@ Consider this chapter a reference card for the rest of the guide. It grounds our
 - $\mathbb{R}_{\geq 0}$ = non-negative reals.
 - $\mathbb{R}^d$ = d-dimensional real-valued vector space 
 
+## Calculus on Multidimensional Objects
+### Integration as sum
+### Integration-by-parts
+### Differentiation
+### Divergence
+
 ## Probability
-- We have a sample space $\Omega$ and a vector-valued continuous random variable (rv) $X:\Omega\rightarrow\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
-- Typically boldface characters are used for multidimensional objects (such as $\mathbf{x}\in\mathbb{R}^d$ here), but I've used lowercase $x\in\mathbb{R}^d$ to keep it simple. In this notation, $x=\left(x_1,\cdots,x_d\right)^\top$ with $x_i\in\mathbb{R}$ for all $i=1,\cdots,d$.
-- $X\leq x$ applies to every dimension, i.e., $X_i(\omega)\leq x_i$.
+- We have a sample space $\Omega$ and a continuous random variable capturing $d$ observable real-valued quantities for every event $\omega\in\Omega$.
+- This gives a $d$-dimensional vector-valued function as the random variable $X:\Omega\rightarrow\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
+- Typically boldface characters are used for multidimensional objects (e.g., $\mathbf{x}\in\mathbb{R}^d$), but I've used lowercase $x\in\mathbb{R}^d$ to keep it simple.
+- In this notation, $x=\left(x_1,\cdots,x_d\right)^\top$ with $x_i\in\mathbb{R}$ for all $i=1,\dots,d$.
+- Comparison such as $X\leq x$ applies component-wise to every dimension, i.e., $X_i(\omega)\leq x_i$. This is worth calling out since we can't take a proper definition of order in $\mathbb{R}^d$ in the traditional sense, i.e., this does not follow the typical order-axioms.
 
 ### Density & Distribution
 - Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\rightarrow\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\rightarrow[0,1]$).
-- I've omitted the subscript $\cdot_X(\cdot)$ at times when the random variable in the context is clear from the argument. I typically write
+- I've omitted the subscript $\cdot_X$ at times when the random variable in the context is clear from the argument. I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}\equiv\int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_d} p(u_1,u_2,\cdots,u_d)\mathop{du_1}\mathop{du_2}\cdots\mathop{du_d}
 $$
 
-- $X\sim p$ is a shorthand for $X$ has a density $p$.
-- For joint density $p(x, y)$, marginals are obtained by integrating out one variable. For $Y$ taking values from $\mathbb{R}^m$, I use explicit subscript for the variable of integrals
+- $X\sim p$ is a shorthand for saying that $X$ has a density $p$.
+- For joint density $p(x, y)$, marginals are obtained by integrating out one variable. I use explicit subscripts for specifying the set of the integration variable, e.g., for $Y$ taking values from $\mathbb{R}^m$
 
 $$
 p(x)=\int_{\mathbb{R}^m}p(x,y)\mathop{dy}
@@ -52,13 +60,13 @@ $$
 \mathbb{E}_{X\sim p}[f(X)]=\int\limits_{\mathbb{R}^d}f(x)p(x)\mathop{dx}
 $$
 
-- Conditional expectation: For $Y$ taking values from $\mathbb{R}^m$, conditional expectation is defined as the deterministic function of $x$. There are various notations typically used here, such as
+- Conditional expectation: For $Y$ taking values from $\mathbb{R}^m$, conditional expectation is defined as the deterministic function of $x$. There are various notations typically used for this, such as
 
 $$
 \mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]\equiv\mathbb{E}_{Y|X=x}[f(Y)]\equiv\mathbb{E}[f(Y)|X=x]=\int\limits_{\mathbb{R}^m} f(y) p(y|x)\mathop{dy}=h(x)
 $$
 
-- I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
+- I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ in these notes.
 
 ### Law of total expectation
 - Using the subscript notation for marginal densities, 
@@ -78,7 +86,5 @@ $$
 $$
 r=\underset{f}{\arg\min}\left(\mathbb{E}_{X,Y\sim p}[\parallel Y-f(X)\parallel_2^2]\right)
 $$
-
-## Calculus & Vector Field Notation
 
 ## Gaussian Arithmetic
