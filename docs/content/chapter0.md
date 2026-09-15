@@ -83,3 +83,7 @@ $$
 $$
 r=\underset{f}{\arg\min}\left(\mathbb{E}_{X,Y\sim p}[\parallel Y-f(X)\parallel_2^2]\right)
 $$
+
+## Calculus & Vector Field Notation
+
+## Gaussian Arithmetic
