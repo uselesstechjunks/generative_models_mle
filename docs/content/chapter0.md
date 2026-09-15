@@ -13,23 +13,23 @@ This is kept short as to not bore you with things that you'd already know, but t
 - $\mathbb{R}^d$ = d-dimensional real-valued vector space 
 
 ## Probability
-- We have a sample space $\Omega$ and a vector-valued continuous random variable $X:\Omega\mapsto\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
+- We have a sample space $\Omega$ and a vector-valued continuous random variable $X:\Omega\rightarrow\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
 - Typically boldface characters are used for multidimensional objects (such as $\mathbf{x}\in\mathbb{R}^d$ here), but I've used lowercase $x\in\mathbb{R}^d$ to keep it simple. In this notation, $x=\left(x_1,\cdots,x_d\right)^\top$ with $x_i\in\mathbb{R}$ for all $i=1,\cdots,d$.
 - $X\leq x$ applies to every dimension, i.e., $X_i(\omega)\leq x_i$.
 
 ### Density & Distribution
-- Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\mapsto\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\mapsto[0,1]$).
+- Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\rightarrow\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\rightarrow[0,1]$).
 - I've omitted the subscript $\cdot_X(\cdot)$ as the random variable in our context is always clear from the argument. Therefore, I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}\equiv \int\limits_\infty^xp(u)\mathop{du}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}
 $$
 
 - $X\sim p$ is a shorthand for $X$ has a density $p$.
-- For joint density $p(x, y)$, marginals are obtained by integrating out one variable.
+- For joint density $p(x, y)$, marginals are obtained by integrating out one variable. For $Y$ taking values from $\mathbb{R}^m$,
 
 $$
-p(x)=\int_{\mathbb{R}^d}p(x,y)\mathop{dy}
+p(x)=\int_{\mathbb{R}^m}p(x,y)\mathop{dy}
 $$
 
 ### Conditional density
@@ -44,23 +44,23 @@ $$
 ### Bayes' theorem
 
 $$
-p(y|x)=\frac{p(x|y)p(y)}{\int_{\mathbb{R}^d}p(x|y)p(y)\mathop{dy}}\implies p(y|x)\propto p(x|y)p(y)
+p(y|x)=\frac{p(x|y)p(y)}{\int_{\mathbb{R}^m}p(x|y)p(y)\mathop{dy}}\implies p(y|x)\propto p(x|y)p(y)
 $$
 
 - $p(y)$ is called prior and $p(y|x)$ as posterior. $p(x|y)$ is the likelihood.
-- $Z=\int_{\mathbb{R}^d}p(x|y)p(y)\mathop{dy}$ is the normalising constant making it a valid probability.
+- $Z=\int_{\mathbb{R}^m}p(x|y)p(y)\mathop{dy}$ is the normalising constant making it a valid probability.
 
 ### Expectations
-- Expectation of a function $f:\mathbb{R}^d\mapsto\mathbb{R}^n$ for $X\sim p$ is defined as the constant
+- Expectation of a function $f:\mathbb{R}^d\rightarrow\mathbb{R}^n$ for $X\sim p$ is defined as the constant
 
 $$
 \mathbb{E}_{X\sim p}[f(X)]=\int\limits_{\mathbb{R}^d}f(x)p(x)\mathop{dx}
 $$
 
-- Conditional expectation: For $Y$ taking values from some $\mathcal{Y}$, conditional expectation is defined as the deterministic function of $x$. There are various notations typically used here, such as
+- Conditional expectation: For $Y$ taking values from $\mathbb{R}^m$, conditional expectation is defined as the deterministic function of $x$. There are various notations typically used here, such as
 
 $$
-\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]\equiv\mathbb{E}_{Y|X=x}[f(Y)]\equiv\mathbb{E}[f(Y)|X=x]=\int\limits_\mathcal{Y} f(y) p(y|x)\mathop{dy}=h(x)
+\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]\equiv\mathbb{E}_{Y|X=x}[f(Y)]\equiv\mathbb{E}[f(Y)|X=x]=\int\limits_{\mathbb{R}^m} f(y) p(y|x)\mathop{dy}=h(x)
 $$
 
 - I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
@@ -68,7 +68,7 @@ $$
 Let's assign the following:
 
 - $p_y=\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}$ and
-- $p_x=\int\limits_{\mathcal{Y}} p(x,y)\mathop{dy}$
+- $p_x=\int\limits_{\mathbb{R}^m} p(x,y)\mathop{dy}$
 
 Then
 
@@ -79,7 +79,7 @@ $$
 - This follows from
 
 $$
-\mathbb{E}_{Y\sim p_y}[Y]=\int\limits_\mathcal{Y} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathcal{Y}} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
+\mathbb{E}_{Y\sim p_y}[Y]=\int\limits_{\mathbb{R}^m} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathbb{R}^m} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
 $$
 
 - Here $r(x)=\mathbb{E}_{Y\sim p(\cdot|x)}[Y]$. This $r$, known as the regression function, is also the minimiser of the $L_2$ loss
