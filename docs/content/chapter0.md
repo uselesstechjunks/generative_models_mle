@@ -22,7 +22,7 @@ This is kept short as to not bore you with things that you'd already know, but t
 - I've omitted the subscript $\cdot_X(\cdot)$ at times when the random variable in the context is clear from the argument. I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\left\{ u\in\mathbb{R}^d\mid u\leq x \right\}} p(u)\mathop{du}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}
 $$
 
 - $X\sim p$ is a shorthand for $X$ has a density $p$.
