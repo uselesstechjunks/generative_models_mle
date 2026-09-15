@@ -97,10 +97,50 @@
      * Convert Markdown to HTML.
      */
     function renderMarkdown(marked, markdown) {
-      return marked.parse(markdown, {
+      const math = [];
+    
+      /*
+       * Protect LaTeX from Markdown parsing.
+       *
+       * We protect display math first, then inline math.
+       * The placeholders contain no Markdown-special characters.
+       */
+      const protectedMarkdown = markdown
+        .replace(/\$\$[\s\S]*?\$\$/g, match => {
+          const index = math.length;
+          math.push(match);
+          return `MATHPLACEHOLDER${index}ENDMATH`;
+        })
+        .replace(/\\\[[\s\S]*?\\\]/g, match => {
+          const index = math.length;
+          math.push(match);
+          return `MATHPLACEHOLDER${index}ENDMATH`;
+        })
+        .replace(/(?<!\$)\$[^\$\n]+?\$(?!\$)/g, match => {
+          const index = math.length;
+          math.push(match);
+          return `MATHPLACEHOLDER${index}ENDMATH`;
+        })
+        .replace(/\\\([\s\S]*?\\\)/g, match => {
+          const index = math.length;
+          math.push(match);
+          return `MATHPLACEHOLDER${index}ENDMATH`;
+        });
+    
+      let html = marked.parse(protectedMarkdown, {
         gfm: true,
         breaks: false
       });
+    
+      /*
+       * Restore the original LaTeX after Markdown parsing.
+       */
+      html = html.replace(
+        /MATHPLACEHOLDER(\d+)ENDMATH/g,
+        (_, index) => math[Number(index)]
+      );
+    
+      return html;
     }
 
     /*
