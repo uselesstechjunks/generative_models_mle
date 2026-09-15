@@ -1,4 +1,4 @@
-# Chapter 1: The Real and Complex Number System
+# Part 1: Formulating the Problem
 
 ## Introduction
 What am I trying to achieve?
