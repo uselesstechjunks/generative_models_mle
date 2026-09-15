@@ -1,4 +1,4 @@
-# Chapter 0: One Pager on Notations & Quick Refresher
+# Part 0: One Pager on Notations & Quick Refresher
 
 Consider this chapter a reference card for the rest of the guide. It grounds our notation and highlights a few standard identities that we will regularly invoke later. It is deliberately brief so you can skim through, get a feel for the notation, and move straight into the core material.
 
