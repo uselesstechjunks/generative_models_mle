@@ -1,12 +1,16 @@
 # Chapter 0: One Pager on Notations & Quick Refresher
 
-This section contains nothing novel. Most of this would be fairly familiar to most MLEs. So, why put it here? Couple of reasons: (a) I would like to clarify a bit on the notations I've used and (b) in case things are a bit rusty (what was that X thing again?), this is aimed as jogging your memory so you don't have to go back looking these up somewhere else. Things are kept short with almost no explanation as to why these results hold.
+This section contains nothing novel. I've included it here as
+
+- It would give me a chance to clarify a bit on the notations I've used in these notes, and
+- I've also called out a few results I've used throughout the note with no explanation as to why these hold.
+
+This is kept short as to not bore you with things that you'd already know, but to help me refer to these in the notes.
 
 ## Notations
 - $\mathbb{R}$ = Reals
 - $\mathbb{R}_{\geq 0}$ = non-negative reals.
 - $\mathbb{R}^d$ = d-dimensional real-valued vector space 
-
 
 ## Probability
 - We have a sample space $\Omega$ and a vector-valued continuous random variable $X:\Omega\mapsto\mathbb{R}^d$ such that $X(\omega)=\mathbf{x}\in\mathbb{R}^d$.
@@ -15,63 +19,71 @@ This section contains nothing novel. Most of this would be fairly familiar to mo
 
 ### Density & Distribution
 - Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\mapsto\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\mapsto[0,1]$).
+- I've omitted the subscript $\cdot_X(\cdot)$ as the random variable in our context is always clear from the argument. Therefore, I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}\equiv \int\limits_\infty^xp(u)\mathop{du}
 $$
 
-- I've omitted the subscript $\cdot_X(\cdot)$ as the random variable in our context is always clear from the argument.
-- The following holds
+- $X\sim p$ is a shorthand for $X$ has a density $p$.
+- For joint density $p(x, y)$, marginals are obtained by integrating out one variable.
 
 $$
-  \mathbb{P}(\mathbf{a}\leq X\leq \mathbf{b})=F_X(\mathbf{b})-F_X(\mathbf{a})=\int\limits_\mathbf{a}^\mathbf{b} p_X(\mathbf{x})\mathop{d\mathbf{x}}
-$$ 
-
-We only need to recall a handful of results.
-
-### Joint and marginal densities
-- Joint density
-
-$$
-p_{X,Y}(x,y)=\frac{d}{dx}F_{X,Y}(x,y)
-$$
-
-- Marginals are obtained by integrating out one variable.
-
-$$
-p_X(x)=\int_{\mathbb{R}}p_{X,Y}(x,y)\mathop{dy}
+p(x)=\int_{\mathbb{R}^d}p(x,y)\mathop{dy}
 $$
 
 ### Conditional density
-- Assuming $p_Y(y) > 0$
+- Assuming $p(y) > 0$
 
 $$
-p_{X}(x|y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}
+p(x|y)=\frac{p(x,y)}{p(y)}
 $$
 
-- This is a descriptor for probability $\mathbb{P}(X|Y=y)$, implying the only random variable here is $X$, while $Y$ is no longer random (takes a constant value $y$).
+- This is a descriptor for probability $\mathbb{P}(X|Y=y)$, implying the only random variable is $X$, while $Y$ is a constant (no longer random).
 
 ### Bayes' theorem
 
 $$
-p_{X}(x|y)=\frac{p_{X,Y}(x,y)}{p_Y(y)=\int_{\mathbb{R}}p_{X,Y}(x,y)\mathop{dx}}=\frac{p_Y(y|x)p_X(x)}{\int_{\mathbb{R}}p_Y(y|x)p_X(x)\mathop{dx}}
+p(y|x)=\frac{p(x|y)p(y)}{\int_{\mathbb{R}^d}p(x|y)p(y)\mathop{dy}}\implies p(y|x)\propto p(x|y)p(y)
 $$
 
+- $p(y)$ is called prior and $p(y|x)$ as posterior. $p(x|y)$ is the likelihood.
+- $Z=\int_{\mathbb{R}^d}p(x|y)p(y)\mathop{dy}$ is the normalising constant making it a valid probability.
+
 ### Expectations
+- Expectation of a function $f:\mathbb{R}^d\mapsto\mathbb{R}^n$ for $X\sim p$ is defined as the constant
 
-## Calculus
-TODO
+$$
+\mathbb{E}_{X\sim p}[f(X)]=\int\limits_{\mathbb{R}^d}f(x)p(x)\mathop{dx}
+$$
 
-Some placeholder math below:
-- Dataset: $D=(z_i)_{i=1}^N, z_i\in\mathbb{R}^d$.
-- The Goal: Learn a map $T$ that morphs some distribution $p$ to target $q$.
+- Conditional expectation: For $Y$ taking values from some $\mathcal{Y}$, conditional expectation is defined as the deterministic function of $x$. There are various notations typically used here, such as
 
-  $$
-  T_\sharp p=q
-  $$
+$$
+\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]\equiv\mathbb{E}_{Y|X=x}[f(Y)]\equiv\mathbb{E}[f(Y)|X=x]=\int\limits_\mathcal{Y} f(y) p(y|x)\mathop{dy}=h(x)
+$$
 
-- Optimal Transport: For some cost function $c:\mathbb{R}^d\times\mathbb{R}^d\to\mathbb{R}_{\geq 0}$
+- I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
+### Law of total variation
+Let's assign the following:
 
-  $$
-  \inf_T\mathbb{E}_{x\sim\mu}[c(x, T(x)]
-  $$
+- $p_y=\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}$ and
+- $p_x=\int\limits_{\mathcal{Y}} p(x,y)\mathop{dy}$
+
+Then
+
+$$
+\mathbb{E}_{Y\sim p_y}[Y]=\mathbb{E}_{X\sim p_x}\mathbb{E}_{Y\sim p(\cdot|x)}[Y]
+$$
+
+- This follows from
+
+$$
+\mathbb{E}_{Y\sim p_y}[Y]=\int\limits_\mathcal{Y} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathcal{Y}} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
+$$
+
+- Here $r(x)=\mathbb{E}_{Y\sim p(\cdot|x)}[Y]$. This $r$, known as the regression function, is also the minimiser of the $L_2$ loss
+
+$$
+r=\underset{f}{\arg\min}\left(\mathbb{E}_{X,Y\sim p}[\parallel Y-f(X)\parallel_2^2]\right)
+$$
