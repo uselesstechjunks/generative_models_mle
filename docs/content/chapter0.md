@@ -19,10 +19,10 @@ This is kept short as to not bore you with things that you'd already know, but t
 
 ### Density & Distribution
 - Densities are denoted by lowercase $p$ (e.g., $p_X(x)$ for $p_X:\mathbb{R}^d\rightarrow\mathbb{R}_{\geq 0}$), distributions are denoted by uppercase $F$ (e.g., $F_X(x):\mathbb{R}^d\rightarrow[0,1]$).
-- I've omitted the subscript $\cdot_X(\cdot)$ as the random variable in our context is always clear from the argument. Therefore, I typically write
+- I've omitted the subscript $\cdot_X(\cdot)$ at times when the random variable in the context is clear from the argument. I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\left\{ u\in\mathbb{R}^d\mid u\leq x \right\}} p(u)\mathop{du}
 $$
 
 - $X\sim p$ is a shorthand for $X$ has a density $p$.
@@ -64,13 +64,9 @@ $$
 $$
 
 - I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
+
 ### Law of total expectation
-Let's assign the following:
-
-- $p_Y=\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}$ and
-- $p_X=\int\limits_{\mathbb{R}^m} p(x,y)\mathop{dy}$
-
-Then
+- Using the subscript notation for marginals, 
 
 $$
 \mathbb{E}_{Y\sim p_Y}[Y]=\mathbb{E}_{X\sim p_X}\left[\mathbb{E}_{Y\sim p(\cdot|x)}[Y]\right]
