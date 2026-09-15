@@ -25,7 +25,7 @@ Consider this chapter a reference card for the rest of the guide. It grounds our
 - I've omitted the subscript $\cdot_X$ at times when the random variable in the context is clear from the argument. I typically write
 
 $$
-F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}\equiv\int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_d} p(u_1,u_2,\cdots,u_d)\mathop{du_1}\mathop{du_2}\cdots\mathop{du_d}
+F(x):=\mathbb{P}(X\leq x)=\int\limits_{\{ u\in\mathbb{R}^d\mid u\leq x \}} p(u)\mathop{du}\equiv\int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\cdots\int_{-\infty}^{x_d} p(u_1,u_2,\dots,u_d)\mathop{du_1}\mathop{du_2}\dots\mathop{du_d}
 $$
 
 - $X\sim p$ is a shorthand for saying that $X$ has a density $p$.
@@ -48,7 +48,7 @@ $$
 ### Bayes' theorem
 
 $$
-p(y|x)=\frac{p(x|y)p(y)}{\int_{\mathbb{R}^m}p(x|y)p(y)\mathop{dy}}\implies p(y|x)\propto p(x|y)p(y)
+\boxed{p(y|x)=\frac{p(x|y)p(y)}{\int_{\mathbb{R}^m}p(x|y)p(y)\mathop{dy}}\implies p(y|x)\propto p(x|y)p(y)}
 $$
 
 - $p(y)$ is called prior and $p(y|x)$ as posterior. $p(x|y)$ is the likelihood.
@@ -73,7 +73,7 @@ $$
 - Using the subscript notation for marginal densities, 
 
 $$
-\mathbb{E}_{Y\sim p_Y}[Y]=\mathbb{E}_{X\sim p_X}\left[\mathbb{E}_{Y\sim p(\cdot|x)}[Y]\right]
+\boxed{\mathbb{E}_{Y\sim p_Y}[Y]=\mathbb{E}_{X\sim p_X}\left[\mathbb{E}_{Y\sim p(\cdot|x)}[Y]\right]}
 $$
 
 - This follows from
@@ -85,7 +85,7 @@ $$
 - Here $r(x)=\mathbb{E}_{Y\sim p(\cdot|x)}[Y]$. This $r$, known as the regression function, is also the minimiser of the $L_2$ loss
 
 $$
-r=\underset{f}{\arg\min}\left(\mathbb{E}_{X,Y\sim p}[\parallel Y-f(X)\parallel_2^2]\right)
+\boxed{r=\underset{f}{\arg\min}\left(\mathbb{E}_{X,Y\sim p}[\parallel Y-f(X)\parallel_2^2]\right)}
 $$
 
 ## Gaussian Arithmetic
