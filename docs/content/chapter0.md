@@ -7,7 +7,7 @@ Consider this chapter a reference card for the rest of the guide. It grounds our
 - $\mathbb{R}_{\geq 0}$ = non-negative reals.
 - $\mathbb{R}^d$ = d-dimensional real-valued vector space 
 
-## Calculus on Multidimensional Objects
+## Calculus in $\mathbb{R}^d$
 ### Integration as sum
 ### Integration-by-parts
 ### Differentiation
