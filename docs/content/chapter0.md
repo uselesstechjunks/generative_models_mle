@@ -39,7 +39,7 @@ $$
 p(x|y)=\frac{p(x,y)}{p(y)}
 $$
 
-- This is a descriptor for probability $\mathbb{P}(X|Y=y)$, implying the only random variable is $X$, while $Y$ is a constant (no longer random).
+- This is a density for the event $X|Y=y$, implying the only random variable is $X$, while $Y$ is a constant (no longer random).
 
 ### Bayes' theorem
 
@@ -64,22 +64,22 @@ $$
 $$
 
 - I've used the notation $\mathbb{E}_{Y\sim p(\cdot|x)}[f(Y)]$ here.
-### Law of total variation
+### Law of total expectation
 Let's assign the following:
 
-- $p_y=\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}$ and
-- $p_x=\int\limits_{\mathbb{R}^m} p(x,y)\mathop{dy}$
+- $p_Y=\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}$ and
+- $p_X=\int\limits_{\mathbb{R}^m} p(x,y)\mathop{dy}$
 
 Then
 
 $$
-\mathbb{E}_{Y\sim p_y}[Y]=\mathbb{E}_{X\sim p_x}\mathbb{E}_{Y\sim p(\cdot|x)}[Y]
+\mathbb{E}_{Y\sim p_Y}[Y]=\mathbb{E}_{X\sim p_X}\left[\mathbb{E}_{Y\sim p(\cdot|x)}[Y]\right]
 $$
 
 - This follows from
 
 $$
-\mathbb{E}_{Y\sim p_y}[Y]=\int\limits_{\mathbb{R}^m} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathbb{R}^m} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
+\mathbb{E}_{Y\sim p_Y}[Y]=\int\limits_{\mathbb{R}^m} y\left(\int\limits_{\mathbb{R}^d} p(x,y)\mathop{dx}\right)\mathop{dy}=\iint\limits_{\mathbb{R}^d\times\mathbb{R}^m} y\cdot p(y|x)p(x)\mathop{dx}\mathop{dy}=\int\limits_{\mathbb{R}^d} r(x)p(x)\mathop{dx}
 $$
 
 - Here $r(x)=\mathbb{E}_{Y\sim p(\cdot|x)}[Y]$. This $r$, known as the regression function, is also the minimiser of the $L_2$ loss
