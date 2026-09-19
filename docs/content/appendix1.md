@@ -9,13 +9,13 @@ $$
 \boldsymbol{\delta}\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})=\underbrace{g_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear approx}}+\underbrace{h_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear error}}
 $$
 
-To bound the error, we check the ratio $\frac{\parallel h_{\mathbf{x}}(\boldsymbol{\delta}) \parallel}{\parallel \boldsymbol{\delta}\parallel}$. As we reduce the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
+To bound the error, we check the ratio $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$. As we reduce the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
 
 $$
-\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\parallel h_{\mathbf{x}}(\boldsymbol{\delta}) \parallel}{\parallel \boldsymbol{\delta}\parallel}= 0,
+\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
 $$
 
-we consider the error to be negligible. In such cases, we consider the function to be "differentiable", use small-oh notation for the error (i.e., $h_{\mathbf{x}}(\boldsymbol{\delta})=o(\parallel\boldsymbol{\delta}\parallel)$), and call $g_{\mathbf{x}}(\boldsymbol{\delta})$ the derivative of the function at $\mathbf{x}$.
+we consider the error to be negligible. In such cases, we consider the function to be "differentiable", use small-oh notation for the error (i.e., $h_{\mathbf{x}}(\boldsymbol{\delta})=o(\lVert\boldsymbol{\delta}\lVert)$), and call $g_{\mathbf{x}}(\boldsymbol{\delta})$ the derivative of the function at $\mathbf{x}$.
 
 $$
 \mathop{d\mathbf{f}}=g_{\mathbf{x}}
