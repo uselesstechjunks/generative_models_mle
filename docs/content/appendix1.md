@@ -62,7 +62,7 @@ $$
 
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
-### Gradient
+### Scalar-valued Functions: Gradient
 For functions of this form $f:U\to\mathbb{R}$ (or $\mathbb{C}$), if $U$ is equipped with an inner product, then there exists a vector $\boldsymbol{\varphi}_L\in U$ associated with every linear operator $L$, which accomplishes the operation. Therefore, for the derivative, we can write
 
 $$
