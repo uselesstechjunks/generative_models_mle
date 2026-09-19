@@ -1,15 +1,33 @@
 # Just Enough Calculus
 
 ## Frechet Differentiability
-Given a function, a common inquiry regarding it's nature is to ask: what happens to the output of the function when we perturb the input slightly? The idea is: if the function doesn't behave crazy (i.e., we have some bound on how much it fluctuates for small-enough changes), we can establish certain properties of the functions which are useful. For functions in general vector space, Frechet derivative captures this notion. 
+Given a function, a useful inquiry regarding it's nature is: what happens to the output of the function when we perturb the input slightly? The goal here is: assuming that the function doesn't behave crazily (i.e., we have some bound on how much it fluctuates for small-enough changes), we can establish certain properties of the functions which can enable us to compute things that would be impossible otherwise.
 
-Let's assume that we have a function $f:U\to V$, $U$ and $V$ being some vector space where norm is defined (i.e., we can compute length of these vectors). A perturbation $\mathbf{x}\mapsto\mathbf{x}+\boldsymbol{\delta}$ causes a change in the output $f(\mathbf{x})\mapsto f(\mathbf{x}+\boldsymbol{\delta})$. The difference vector, $\boldsymbol{\delta}\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$, clearly dependent on the perturbation $\boldsymbol{\delta}\in U$ as well as the point of evaluation (i.e., $\mathbf{x}\in U$), can be thought of decomposing into 2 parts - a linear (in $\boldsymbol{\delta}$) approximation of the function near the vicinity and non-linear error-term of that approximation:
+For scalar functions $f:\mathbb{R}\to\mathbb{R}$ (or $f:\mathbb{C}\to\mathbb{C}$), this is done by considering additive perturbations $x\mapsto x+\delta$, and checking how much it affects the output $f(x)\mapsto f(x+\delta)$. We quantify this by introducing a ratio (since it's possible to compute ratios with scalars) and computing its limit for infinitesimal perturbations:
 
 $$
-\boldsymbol{\delta}\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})=\underbrace{g_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear approx}}+\underbrace{h_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear error}}
+df\equiv f'(x)\equiv\mathop{\frac{d}{dx}}f:=\lim\limits_{\delta\to 0}\frac{f(x+\delta)-f(x)}{\delta}
 $$
 
-To bound the error, we check the ratio $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$. As we reduce the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
+With this, the changed output under small-enough perturbations $h$ can be approximated well by a simple multiplication $f'(x)\cdot h$, followed by a simple addition (without having to re-evaluate the function again at $x+h$):
+
+$$
+f(x+h)\approx f(x)+f'(x)\cdot h
+$$
+
+For functions in general vector space, ratios are not defined. Frechet derivative captures this notion with a slightly different machinery.
+
+Let's assume that we have a function $f:U\to V$, $U$ and $V$ being some vector space where norm is defined (i.e., we can compute length of vectors in these spaces). The same notion of additive perturbations $\mathbf{x}\mapsto\mathbf{x}+\boldsymbol{\delta}$ is considered, causing the output to change $f(\mathbf{x})\mapsto f(\mathbf{x}+\boldsymbol{\delta})$. 
+
+The change in output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x}); \delta\mathbf{f}\in V$, that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it (i.e., $\mathbf{x}\in U$). This vector can be thought of being made up by 2 parts - a linear (in $\boldsymbol{\delta}$) part and non-linear part:
+
+$$
+\delta\mathbf{f}=\underbrace{g_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear}}+\underbrace{h_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear}}
+$$
+
+The idea is: if the non-linear part is negligible, we can ignore it and use the linear part an an approximation of the change vector $\delta\mathbf{f}$. Under this approximation, $h_{\mathbf{x}}(\boldsymbol{\delta})$ then represents the "error" in the approximation. 
+
+To bound the error, we check the ratio of the norms, i.e., $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$. As we reduce the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
 
 $$
 \lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
