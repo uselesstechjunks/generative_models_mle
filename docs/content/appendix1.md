@@ -63,7 +63,7 @@ $$
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
 ### Scalar-valued Functions: Gradient
-For functions of this form $f:U\to\mathbb{R}$ (or $\mathbb{C}$), if $U$ is equipped with an inner product, then there exists a vector $\boldsymbol{\varphi}_L\in U$ associated with every linear operator $L$, which accomplishes the operation. Therefore, for the derivative, we can write
+For functions of this form $f:U\to\mathbb{R}$ (or $\mathbb{C}$), if $U$ is equipped with an inner product, then there exists a vector $\boldsymbol{\varphi}_L\in D$ associated with every linear operator $L$, which accomplishes the operation. $D$ is known as the dual-space, and is compatible with $U$ in terms of inner-product. Therefore, for the derivative, we can write
 
 $$
 \mathbf{df}(\mathbf{x})=\langle \boldsymbol{\varphi}_{\mathbf{df}}, \mathbf{x}\rangle
