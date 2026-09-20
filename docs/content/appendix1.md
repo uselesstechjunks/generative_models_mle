@@ -99,10 +99,32 @@ The benefit of Fréchet differentiability is that we can extend the notion of de
 
 For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, the Jacobian $J_\mathbf{x}$ is simply the tensor of dimension $\mathbb{R}^{k\times m\times n}$. 
 
-For real-valued functions $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, the gradient is the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{n\times m}$ (since the first dimension of the Jacobian tensor is $1$)
+For real-valued functions $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, the gradient is the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{m\times n}$ (since the first dimension of the Jacobian tensor is $1$)
+
+### Functions with Bounded Derivative: Lipschitz Functions
+Now, let's revisit the original promise of derivatives as discussed in the first section. We keep the context of functions on general normed-vector spaces $f:U\to V$. One of the ways we recognise "well-behaved" functions is by the derivatives being bounded. The notion we discuss here is Lipschitz continuity.
+
+Typically, Lipschitz continuity is defined using the norm-view of the function. To define this clearly, let's use $\Vert\cdot\Vert_U$ to define the norm on the input space $U$, and similarly for $V$. We call the function L-Lipschitz as long as for every pair of input points $\mathbf{x}$ and $\mathbf{y}$, we can find a $L\geq 0$ such that the change in output is bounded by change in input, up to a multiplicative factor of $L$, i.e.,
+
+$$
+\Vert f(\mathbf{x})-f(\mathbf{y})\Vert_V\leq L\Vert\mathbf{x}-\mathbf{y}\Vert_U
+$$
+
+We can equivalently define this via the norm of the differential operator. Intuitively, this norm (like every operator norm) captures the "blow-up" factor of this operator:
+
+$$
+\Vert\mathbf{df}_\mathbf{x}\Vert_{\text{op}}:=\sup\limits_{\mathbf{h}\in U; \mathbf{h}\neq \mathbf{0}}\frac{\Vert\mathbf{df}_\mathbf{x}(\mathbf{h})\Vert_V}{\Vert\mathbf{h}\Vert_U}
+$$
+
+Under this definition, a bounded operator norm for the differential for the entire domain is a necessary and sufficient condition for the function being L-Lipschitz.
+
+$$
+\sup\limits_{\mathbf{x}\in U}\Vert\mathbf{df}_\mathbf{x}\Vert_{\text{op}}\leq L 
+$$
+
+For Euclidean spaces, this simply means that the Jacobian's largest Eigenvalue (i.e., the spectral norm of the Jacobian matrix) is bounded by $L$.
 
 ### Operator View of the Gradient
-### Functions with Bounded Derivative: Lipschitz Functions
 ### The Total Derivative Theorem
 ### Symmetry of Second Derivatives: Clairaut's Theorem
 ### Taylor's Theorem & The Hessian
