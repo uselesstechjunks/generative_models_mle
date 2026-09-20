@@ -118,7 +118,7 @@ $$
 \sup\limits_{\mathbf{x}\in U}\Vert\mathbf{df}_\mathbf{x}\Vert_{\text{op}}\leq L 
 $$
 
-For Euclidean spaces, this simply means that the Jacobian's largest singular value (i.e., the spectral norm of the Jacobian matrix) is bounded by $L$.
+For Euclidean spaces, this means that the Jacobian's largest singular value (i.e., the spectral norm of the Jacobian matrix) is bounded by $L$.
 
 ### The Total Derivative Theorem
 ### Symmetry of Second Derivatives: Clairaut's Theorem
