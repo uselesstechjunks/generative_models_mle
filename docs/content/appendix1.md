@@ -16,39 +16,41 @@ $$
 f(x+h)\approx f(x)+f'(x)\cdot h
 $$
 
-For functions in general vector spaces, ratios are not defined. Frechet derivative captures this notion with a slightly different machinery.
+For functions in general vector spaces, ratios are not defined. Fréchet derivative captures this notion with a slightly different machinery.
 
-### General Normed Vector-Spaces: Frechet Differentiability
-Let's assume that we have a function $f:U\to V$, where $U$ and $V$ are arbitrary vector spaces with a norm (i.e., we can compute length of vectors in these spaces). The change in output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$ (note that $\delta\mathbf{f}\in V$), that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it on (i.e., $\mathbf{x}\in U$). 
+### General Normed Vector-Spaces: Fréchet Differentiability
+Let's assume that we have a function $f:U\to V$, where $U$ and $V$ are arbitrary vector spaces with a norm (i.e., we can compute length of vectors in these spaces). The change in the output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$, that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it on (i.e., $\mathbf{x}\in U$). Note that $\delta\mathbf{f}\in V$.
 
 This change vector can be thought of as being made up by 2 parts - a part that changes linearly with $\boldsymbol{\delta}$, and another that captures all the remaining non-linear influences:
 
 $$
-\delta\mathbf{f}=\underbrace{g_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear}}+\underbrace{h_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear}}
+\delta\mathbf{f}=\underbrace{L_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear}}+\underbrace{E_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear}}
 $$
 
-[On the notation: I used subscript for $\mathbf{x}$ and put $\boldsymbol{\delta}$ inside the argument since $\mathbf{x}$, being the point of evaluation, is constant here, as we vary only the perturbation $\boldsymbol{\delta}$.]
+I used subscript for $\mathbf{x}$ and kept $\boldsymbol{\delta}$ as a parameter since $\mathbf{x}$, being the evaluation-point, is constant here, as we vary only the perturbation $\boldsymbol{\delta}$.
 
-The motivation behind this decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $h_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation. 
+The motivation behind this decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation. 
 
-To bound this error, we introduce the ratio of the norms, i.e., $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
+To bound this error, we introduce the ratio of the norms, i.e., $\frac{\lVert E_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
 
 $$
-\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
+\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert E_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
 $$
 
 then we consider the error to be negligible. We can use the small-oh notation for this error then, i.e.,
 
 $$
-h_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)
+E_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)
 $$
 
-In such cases, we consider the function to be "differentiable", and call $g_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $g_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $g_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
+In such cases, we consider the function to be "differentiable", and call $L_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. 
 
-We also define an operator, $\mathbf{df}:\mathbf{x}\mapsto g_{\mathbf{x}}$, that produces this derivative for every point in the input space. This is the differential operator $\mathbf{df}:U\to (U\to V)$. Under this notation, the approximation becomes
+Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $L_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $L_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
+
+Since $L_{\mathbf{x}}$ depends on $\mathbf{x}$, we also define an operator, $\mathbf{df}:\mathbf{x}\mapsto L_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $\mathbf{df}:U\to (U\to V)$. Using this notation, the approximation becomes
 
 $$
-f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+g_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
+f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+L_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
 $$
 
 ### Finite-dimensional Vector-Space: Jacobian
@@ -65,7 +67,7 @@ We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf
 ### Scalar-valued Functions on Inner-Product Spaces: Gradient
 Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on inner-product spaces $U$. For derivatives of such cases, we can use another trick. By Riesz Representation Theorem, for any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product. Concretely, $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
-Therefore, for the derivative, we use $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{\mathbf{df}(\mathbf{x})}$ and write
+For the derivative, we use a special notation $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{L_{\mathbf{x}}}$ and write
 
 $$
 (\mathbf{df}(\mathbf{x}))(\mathbf{h})=\langle \nabla_\mathbf{x} f, \mathbf{h}\rangle
