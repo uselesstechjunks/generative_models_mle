@@ -1,10 +1,10 @@
 # Just Enough Calculus
 
 ## Differentiability
-Given a function, a useful inquiry regarding its nature is: what happens to the output of the function when we perturb the input slightly. The goal here is: assuming that the function doesn't behave crazily (i.e., we have some bound on how much it fluctuates for small-enough changes), we can establish certain properties of the functions that enables us to compute things that would otherwise be impossible.
+Given a function, a useful inquiry regarding its nature is: what happens to the output of the function when we perturb the input slightly. Concretely, considering additive perturbations, $x\mapsto x+\delta$, we check how much it affects the output, $f(x)\mapsto f(x+\delta)$. The goal here is: assuming that the function doesn't fluctuate drastically (i.e., we have some bound on how much it deviates for small-enough changes in the input), we can establish certain properties of the functions that enables us to compute things that otherwise would be impossible. 
 
 ### Scalar Functions
-For scalar functions $f:\mathbb{R}\to\mathbb{R}$ (or $f:\mathbb{C}\to\mathbb{C}$), this is done by considering additive perturbations, $x\mapsto x+\delta$, and checking how much it affects the output, $f(x)\mapsto f(x+\delta)$. We quantify this by introducing a ratio (since it's possible to compute ratios with scalars) and computing its limit for infinitesimal perturbations:
+For scalar functions $f:\mathbb{R}\to\mathbb{R}$ (or $f:\mathbb{C}\to\mathbb{C}$), this is quantified by introducing a ratio (since it's possible to compute ratios with scalars) and pushing its limit to infinitesimal perturbations. When this limit exists, then we define
 
 $$
 df(x)\equiv f'(x)\equiv\mathop{\frac{d}{dx}}f:=\lim\limits_{\delta\to 0}\frac{f(x+\delta)-f(x)}{\delta}
@@ -19,65 +19,69 @@ $$
 For functions in general vector spaces, ratios are not defined. Frechet derivative captures this notion with a slightly different machinery.
 
 ### General Vector-Space: Frechet Differentiability
-Let's assume that we have a function $f:U\to V$, where $U$ and $V$ are arbitrary vector spaces with a well-defined norm (i.e., we can compute length of vectors in these spaces). The same notion of additive perturbations $\mathbf{x}\mapsto\mathbf{x}+\boldsymbol{\delta}$ is considered.
+Let's assume that we have a function $f:U\to V$, where $U$ and $V$ are arbitrary vector spaces with a norm (i.e., we can compute length of vectors in these spaces). The change in output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$ (note that $\delta\mathbf{f}\in V$), that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it on (i.e., $\mathbf{x}\in U$). 
 
-The change in output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$ (note that $\delta\mathbf{f}\in V$), that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it (i.e., $\mathbf{x}\in U$). This vector can be thought of as being made up by 2 parts - a linear (in $\boldsymbol{\delta}$) part and non-linear part:
+This change vector can be thought of as being made up by 2 parts - a part that changes linearly with $\boldsymbol{\delta}$, and another that captures all the remaining non-linear influences:
 
 $$
 \delta\mathbf{f}=\underbrace{g_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear}}+\underbrace{h_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear}}
 $$
 
-[On the notation: why use subscript for $\mathbf{x}$ and put $\boldsymbol{\delta}$ inside the argument? $\mathbf{x}$ is constant here, as we fix where we want to evaluate this quantity, while we vary only the perturbation $\boldsymbol{\delta}$.]
+[On the notation: I used subscript for $\mathbf{x}$ and put $\boldsymbol{\delta}$ inside the argument since $\mathbf{x}$, being the point of evaluation, is constant here, as we vary only the perturbation $\boldsymbol{\delta}$.]
 
-The motivation behind this decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $h_{\mathbf{x}}(\boldsymbol{\delta})$ then represents the "error" in our approximation. 
+The motivation behind this decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $h_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation. 
 
-To bound this error, we check the ratio of the norms, i.e., $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
+To bound this error, we introduce the ratio of the norms, i.e., $\frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
 
 $$
 \lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert h_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
 $$
 
-then we consider the error to be negligible. We use then use the small-oh notation for the error, i.e.,
+then we consider the error to be negligible. We can use the small-oh notation for this error then, i.e.,
 
 $$
 h_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)
 $$
 
-In such cases, we consider the function to be "differentiable", and call $g_{\mathbf{x}}$ the derivative of the function at $\mathbf{x}$.
+In such cases, we consider the function to be "differentiable", and call $g_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. Note that, as apparent from how it's defined, derivative is a function that has the same shape as $f$, i.e., $g_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $g_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
+
+We also define an operator, $\mathbf{df}:\mathbf{x}\mapsto g_{\mathbf{x}}$, that produces this derivative for every point in the input space. This is the differential operator $\mathbf{df}:U\to (U\to V)$. Under this notation, the approximation becomes
 
 $$
-\mathbf{df}:=g_{\mathbf{x}}
+f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+g_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
 $$
-
-Note that, as apparent from how it's defined, $\mathbf{df}$ is a function (or, an operator) that has the same shape as $f$, i.e., $\mathbf{df}:U\to V$. It is linear by definition, and it produces $\mathbf{df}(\mathbf{x})\in V$.
 
 ### Finite-dimensional Vector-Space: Jacobian
-For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear operator can always be achieved by finding a matrix of that operator (there always is one), and then performing simple matrix-vector multiplication.
+For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that function (there always is one), and then performing simple matrix-vector multiplication.
 
-Let $f'(\mathbf{x})$ be the matrix of the linear operator $\mathbf{df}$. Then, for a sufficiently small-enough perturbation $\mathbf{h}$, the linear approximation becomes
+Let $f'(\mathbf{x})$ be the matrix of the linear function $\mathbf{df}(\mathbf{x})$. Then, for a sufficiently small-enough perturbation $\mathbf{h}$, the linear approximation becomes
 
 $$
-f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \mathbf{df}(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
+f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
 $$
 
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
 ### Scalar-valued Functions: Gradient
-For functions of this form $f:U\to\mathbb{R}$ (or $\mathbb{C}$), if $U$ is equipped with an inner product, then there exists a vector $\boldsymbol{\varphi}_L\in D$ associated with every linear operator $L$, which accomplishes the operation. $D$ is known as the dual-space, and is compatible with $U$ in terms of inner-product. Therefore, for the derivative, we can write
+Now, we consider the case where the functions are scalar-valued $f:U\to\mathbb{R}$ (or $\mathbb{C}$). For derivatives of such cases, we can use another trick. For any linear function $L:U\to\mathbb{R}$, there exists a vector its dual space that achieves the same effect with a simple inner product with the input instead. Concretely, there exists a vector $\boldsymbol{\varphi}_L\in D$, such that $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$.
+
+Therefore, for the derivative, we use $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{\mathbf{df}(\mathbf{x})}$ and write
 
 $$
-\mathbf{df}(\mathbf{x})=\langle \boldsymbol{\varphi}_{\mathbf{df}}, \mathbf{x}\rangle
+(\mathbf{df}(\mathbf{x}))(\mathbf{h})=\langle \nabla_\mathbf{x} f, \mathbf{h}\rangle
 $$
 
-For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian ($J_{\mathbf{x}}^\top$). We use $\nabla f=\boldsymbol{\varphi}_{\mathbf{df}}$ for this, such that
+For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian:
 
 $$
-f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \mathbf{df}(\mathbf{h})=f(\mathbf{x})+\nabla f\cdot\mathbf{h}
+\nabla_\mathbf{x} f=J_\mathbf{x}^\top
 $$
 
-Here we replaced the inner-product with dot-product.
+Replacing the inner-product by its finite-dimensional variant, the dot-product, we simplify
 
-### Jacobian
+$$
+f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}=f(\mathbf{x})+\nabla_\mathbf{x} f\cdot\mathbf{h}
+$$
 
 ## Integration
 ### Multiple Integrals
