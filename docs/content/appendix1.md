@@ -67,7 +67,7 @@ We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf
 
 With Jacobian, we obtain a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
-### Scalar-valued Functions on Hilbert Spaces: Gradient
+### Scalar-valued Functions on Hilbert Spaces: Gradient Vector
 Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on complete inner-product spaces $U$ (Hilbert space). For derivatives of such cases, we can use another trick. For any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product (Riesz Representation Theorem), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 For the derivative, we use a special notation $\nabla$ to define this vector, such that 
@@ -94,7 +94,7 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}=f(\mathbf{x})+\nabla_\mathbf{x} f\cdot\mathbf{h}
 $$
 
-### Derivatives of Matrix-Functions
+### Derivatives of Matrix-Functions: Jacobian Tensor & Gradient Matrix
 The benefit of Fréchet differentiability is that we can extend the notion of derivatives easily to functions with any normed-vector field domains. 
 
 For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, the Jacobian $J_\mathbf{x}$ is simply the tensor of dimension $\mathbb{R}^{k\times m\times n}$. 
