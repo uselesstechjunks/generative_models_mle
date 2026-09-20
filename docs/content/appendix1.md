@@ -29,32 +29,28 @@ $$
 
 I used subscript for $\mathbf{x}$ and kept $\boldsymbol{\delta}$ as a parameter since $\mathbf{x}$, being the evaluation-point, is constant here, as we vary only the perturbation $\boldsymbol{\delta}$.
 
-The motivation behind this decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation. 
+The motivation behind this decomposition is this: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation.
 
-To bound this error, we introduce the ratio of the norms, i.e., $\frac{\lVert E_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
-
-$$
-\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert E_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
-$$
-
-then we consider the error to be negligible. We can use the small-oh notation for this error then, i.e., $E_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)$, and write
+To bound this error, we introduce the ratio of the norms, i.e., $\frac{\Vert E_{\mathbf{x}}(\boldsymbol{\delta}) \Vert}{\Vert \boldsymbol{\delta}\Vert}$ (possible since norms produce reals). As we reduce the magnitude of the perturbation, if the magnitude of the error stays bounded by the magnitude of the perturbation itself, i.e.,  
 
 $$
-f(\mathbf{x}+\mathbf{h})=f(\mathbf{x})+L_{\mathbf{x}}(\mathbf{h})+o(\Vert\boldsymbol{\delta}\Vert)
+\lim\limits_{\boldsymbol{\delta}\to 0} \frac{\Vert E_{\mathbf{x}}(\boldsymbol{\delta}) \Vert}{\Vert \boldsymbol{\delta}\Vert}= 0,
 $$
 
-In such cases, we consider the function to be "differentiable", and call $L_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. 
+then we consider the error to be negligible. We can then use the small-oh notation for this error, i.e., $E_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)$, and we consider the function to be "differentiable". 
 
-Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $L_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $L_{\mathbf{x}}(\mathbf{h})\in V$ for every $\mathbf{h}\in U$.
+Clearly, this would not hold for any choice of linear function $L_\mathbf{x}:U\to V$. Let's call the set of all bounded linear functions $\mathcal{L}(U,V)$. Assuming the function is differentiable, a specific choice $D_{\mathbf{x}}\in\mathcal{L}$ makes the error $0$ in limit. We call this specific $D_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$.
+
+Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $D_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $D_{\mathbf{x}}(\mathbf{h})\in V$ for every $\mathbf{h}\in U$.
 
 ### Differential Operator
-Since the derivative $L_{\mathbf{x}}$ depends on $\mathbf{x}$, we can also identify an operator, $\mathbf{df}:\mathbf{x}\mapsto L_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $\mathbf{df}:U\to (U\to V)$. Using this notation, the approximation becomes
+Since the derivative $D_{\mathbf{x}}$ depends on $\mathbf{x}$, we can also identify an operator, $\mathbf{df}:\mathbf{x}\mapsto D_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $\mathbf{df}:U\to\mathcal{L}(U,V)$. Using this notation, the approximation becomes
 
 $$
-f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+L_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
+f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+D_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
 $$
 
-### Finite-dimensional Euclidean Vector-Space: Jacobian
+### Euclidean Vector-Spaces: Jacobian
 For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that function (there always is one), and then performing simple matrix-vector multiplication.
 
 Let $f'(\mathbf{x})$ be the matrix of the linear function $\mathbf{df}(\mathbf{x})$. Then, for a sufficiently small-enough perturbation $\mathbf{h}$, the linear approximation becomes
@@ -63,17 +59,17 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
 $$
 
-We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. Note that the shape is the same as we expect for matrices operating on $n$-dimensional column-space and $m$-dimensional row-space.
+We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity.
 
 With Jacobian, we obtain a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
 ### Scalar-valued Functions on Hilbert Spaces: Gradient Vector
-Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on complete inner-product spaces $U$ (Hilbert space). For derivatives of such cases, we can use another trick. For any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product (Riesz Representation Theorem), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
+Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on complete inner-product spaces $U$ (Hilbert space). For derivatives of such cases, we can use another trick. For any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L\in U$ that achieves the same effect with a simple inner product (Riesz Representation Theorem), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 For the derivative, we use a special notation $\nabla$ to define this vector, such that 
 
 $$
-\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{ L_{\mathbf{x}} }
+\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{ D_{\mathbf{x}} }
 $$ 
 
 and write
@@ -104,7 +100,7 @@ For real-valued functions $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, the gradient 
 ### Functions with Bounded Derivative: Lipschitz Functions
 Now, let's revisit the original promise of derivatives as discussed in the first section. We keep the context of functions on general normed-vector spaces $f:U\to V$. One of the ways we recognise "well-behaved" functions is by the derivatives being bounded. The notion we discuss here is Lipschitz continuity.
 
-Typically, Lipschitz continuity is defined using the norm-view of the function. To define this clearly, let's use $\Vert\cdot\Vert_U$ to define the norm on the input space $U$, and similarly for $V$. We call the function L-Lipschitz as long as for every pair of input points $\mathbf{x}$ and $\mathbf{y}$, we can find a $L\geq 0$ such that the change in output is bounded by change in input, up to a multiplicative factor of $L$, i.e.,
+Typically, Lipschitz continuity is defined using the norm-view of the function. To define this clearly, let's use $\Vert\cdot\Vert_U$ to define the norm on the input space $U$, and similarly for $V$. We call the function L-Lipschitz as long as we can find a $L\geq 0$ such that for every pair of input points $\mathbf{x}$ and $\mathbf{y}$, the change in output is bounded by change in input, up to a multiplicative factor of $L$, i.e.,
 
 $$
 \Vert f(\mathbf{x})-f(\mathbf{y})\Vert_V\leq L\Vert\mathbf{x}-\mathbf{y}\Vert_U
@@ -122,9 +118,8 @@ $$
 \sup\limits_{\mathbf{x}\in U}\Vert\mathbf{df}_\mathbf{x}\Vert_{\text{op}}\leq L 
 $$
 
-For Euclidean spaces, this simply means that the Jacobian's largest Eigenvalue (i.e., the spectral norm of the Jacobian matrix) is bounded by $L$.
+For Euclidean spaces, this simply means that the Jacobian's largest singular value (i.e., the spectral norm of the Jacobian matrix) is bounded by $L$.
 
-### Operator View of the Gradient
 ### The Total Derivative Theorem
 ### Symmetry of Second Derivatives: Clairaut's Theorem
 ### Taylor's Theorem & The Hessian
@@ -136,3 +131,5 @@ For Euclidean spaces, this simply means that the Jacobian's largest Eigenvalue (
 ### Leibniz Integral Rule (Differentiating Under the Integral Sign)
 ### Change of Variables: Pushing Back Local Volume
 ### Integration by Parts & Divergence: The Adjoint Perspective
+
+## Operator View of the Gradient
