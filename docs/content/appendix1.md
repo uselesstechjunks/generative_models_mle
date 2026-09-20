@@ -37,23 +37,24 @@ $$
 \lim\limits_{\boldsymbol{\delta}\to 0} \frac{\lVert E_{\mathbf{x}}(\boldsymbol{\delta}) \lVert}{\lVert \boldsymbol{\delta}\lVert}= 0,
 $$
 
-then we consider the error to be negligible. We can use the small-oh notation for this error then, i.e.,
+then we consider the error to be negligible. We can use the small-oh notation for this error then, i.e., $E_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)$, and write
 
 $$
-E_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)
+f(\mathbf{x}+\mathbf{h})=f(\mathbf{x})+L_{\mathbf{x}}(\mathbf{h})+o(\Vert\boldsymbol{\delta}\Vert)
 $$
 
 In such cases, we consider the function to be "differentiable", and call $L_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. 
 
-Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $L_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $L_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
+Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $L_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $L_{\mathbf{x}}(\mathbf{h})\in V$ for every $\mathbf{h}\in U$.
 
-Since $L_{\mathbf{x}}$ depends on $\mathbf{x}$, we also define an operator, $\mathbf{df}:\mathbf{x}\mapsto L_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $\mathbf{df}:U\to (U\to V)$. Using this notation, the approximation becomes
+### Differential Operator
+Since the derivative $L_{\mathbf{x}}$ depends on $\mathbf{x}$, we can also identify an operator, $\mathbf{df}:\mathbf{x}\mapsto L_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $\mathbf{df}:U\to (U\to V)$. Using this notation, the approximation becomes
 
 $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+L_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})
 $$
 
-### Finite-dimensional Vector-Space: Jacobian
+### Finite-dimensional Euclidean Vector-Space: Jacobian
 For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that function (there always is one), and then performing simple matrix-vector multiplication.
 
 Let $f'(\mathbf{x})$ be the matrix of the linear function $\mathbf{df}(\mathbf{x})$. Then, for a sufficiently small-enough perturbation $\mathbf{h}$, the linear approximation becomes
@@ -62,9 +63,11 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \left(\mathbf{df}(\mathbf{x})\right)(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
 $$
 
-We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
+We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. Note that the shape is the same as we expect for matrices operating on $n$-dimensional column-space and $m$-dimensional row-space.
 
-### Scalar-valued Functions on Inner-Product Spaces: Gradient
+With Jacobian, we obtain a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
+
+### Scalar-valued Functions on Hilbert Spaces: Gradient
 Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on complete inner-product spaces $U$ (Hilbert space). For derivatives of such cases, we can use another trick. For any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product (Riesz Representation Theorem), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 For the derivative, we use a special notation $\nabla$ to define this vector, such that 
@@ -79,7 +82,7 @@ $$
 (\mathbf{df}(\mathbf{x}))(\mathbf{h})=\langle \nabla_\mathbf{x} f, \mathbf{h}\rangle
 $$
 
-For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian (as $J_\mathbf{x}$ is the row vector $\mathbb{R}^{1\times m}$)
+For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian (as $J_\mathbf{x}$ is the row vector $\mathbb{R}^{1\times n}$)
 
 $$
 \nabla_\mathbf{x} f=J_\mathbf{x}^\top
@@ -91,13 +94,23 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}=f(\mathbf{x})+\nabla_\mathbf{x} f\cdot\mathbf{h}
 $$
 
+### Derivatives of Matrix-Functions
+The benefit of Fréchet differentiability is that we can extend the notion of derivatives easily to functions with any normed-vector field domains. 
 
+For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, the Jacobian $J_\mathbf{x}$ is simply the tensor of dimension $\mathbb{R}^{k\times m\times n}$. 
+
+For real-valued functions $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, the gradient is the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{n\times m}$ (since the first dimension of the Jacobian tensor is $1$)
+
+### Operator View of the Gradient
+### Functions with Bounded Derivative: Lipschitz Functions
+### The Total Derivative Theorem
+### Symmetry of Second Derivatives: Clairaut's Theorem
+### Taylor's Theorem & The Hessian
 
 ## Integration
-### Multiple Integrals
-### Order Swapping
-### Change of Variable
-
-## Some More
-### Divergence
-### Integration By Parts
+### Notation & Hyper-volume Elements
+### Integrals as Linear Functionals
+### Multiple Integrals & Order Swapping (Fubini's Theorem)
+### Leibniz Integral Rule (Differentiating Under the Integral Sign)
+### Change of Variables: Pushing Back Local Volume
+### Integration by Parts & Divergence: The Adjoint Perspective
