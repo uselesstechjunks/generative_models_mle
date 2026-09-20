@@ -79,7 +79,7 @@ $$
 (\mathbf{df}(\mathbf{x}))(\mathbf{h})=\langle \nabla_\mathbf{x} f, \mathbf{h}\rangle
 $$
 
-For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian:
+For functions $f:\mathbb{R}^n\to\mathbb{R}$, this equals to the transpose of the Jacobian (as $J_\mathbf{x}$ is the row vector $\mathbb{R}^{1\times m}$)
 
 $$
 \nabla_\mathbf{x} f=J_\mathbf{x}^\top
