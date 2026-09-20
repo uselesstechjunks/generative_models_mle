@@ -18,7 +18,7 @@ $$
 
 For functions in general vector spaces, ratios are not defined. Frechet derivative captures this notion with a slightly different machinery.
 
-### General Vector-Space: Frechet Differentiability
+### General Normed Vector-Spaces: Frechet Differentiability
 Let's assume that we have a function $f:U\to V$, where $U$ and $V$ are arbitrary vector spaces with a norm (i.e., we can compute length of vectors in these spaces). The change in output space is the vector, $\delta\mathbf{f}:=f(\mathbf{x}+\boldsymbol{\delta})-f(\mathbf{x})$ (note that $\delta\mathbf{f}\in V$), that depends on the perturbation $\boldsymbol{\delta}\in U$ as well as the point we evaluate it on (i.e., $\mathbf{x}\in U$). 
 
 This change vector can be thought of as being made up by 2 parts - a part that changes linearly with $\boldsymbol{\delta}$, and another that captures all the remaining non-linear influences:
@@ -62,7 +62,7 @@ $$
 
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
-### Scalar-valued Functions: Gradient
+### Scalar-valued Functions on Inner-Product Spaces: Gradient
 Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on inner-product spaces $U$. For derivatives of such cases, we can use another trick. By Riesz Representation Theorem, for any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product. Concretely, $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 Therefore, for the derivative, we use $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{\mathbf{df}(\mathbf{x})}$ and write
