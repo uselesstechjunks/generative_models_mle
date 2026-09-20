@@ -1,13 +1,13 @@
 # Just Enough Calculus
 
-## Differentiability
+## Differentiation
 Given a function, a useful inquiry regarding its nature is: what happens to the output of the function when we perturb the input slightly. Concretely, considering additive perturbations, $x\mapsto x+\delta$, we check how much it affects the output, $f(x)\mapsto f(x+\delta)$. The goal here is: assuming that the function doesn't fluctuate drastically (i.e., we have some bound on how much it deviates for small-enough changes in the input), we can establish certain properties of the functions that enables us to compute things that otherwise would be impossible. 
 
 ### Scalar Functions
 For scalar functions $f:\mathbb{R}\to\mathbb{R}$ (or $f:\mathbb{C}\to\mathbb{C}$), this is quantified by introducing a ratio (since it's possible to compute ratios with scalars) and pushing its limit to infinitesimal perturbations. When this limit exists, then we define
 
 $$
-df(x)\equiv f'(x)\equiv\mathop{\frac{d}{dx}}f:=\lim\limits_{\delta\to 0}\frac{f(x+\delta)-f(x)}{\delta}
+f'(x)\equiv\mathop{\frac{d}{dx}}f:=\lim\limits_{\delta\to 0}\frac{f(x+\delta)-f(x)}{\delta}
 $$
 
 With this, the changed output under "small-enough" perturbations $h$ can be approximated well by performing a simple multiplication $f'(x)\cdot h$, followed by a simple addition. That is, we can claim, without having to re-evaluate the function at $x+h$, that:
@@ -43,7 +43,7 @@ $$
 h_{\mathbf{x}}(\boldsymbol{\delta})=o(\Vert\boldsymbol{\delta}\Vert)
 $$
 
-In such cases, we consider the function to be "differentiable", and call $g_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. Note that, as apparent from how it's defined, derivative is a function that has the same shape as $f$, i.e., $g_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $g_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
+In such cases, we consider the function to be "differentiable", and call $g_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$. Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $g_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $g_{\mathbf{x}}(\mathbf{h})\in V$ for $\mathbf{h}\in U$.
 
 We also define an operator, $\mathbf{df}:\mathbf{x}\mapsto g_{\mathbf{x}}$, that produces this derivative for every point in the input space. This is the differential operator $\mathbf{df}:U\to (U\to V)$. Under this notation, the approximation becomes
 
@@ -63,7 +63,7 @@ $$
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ to represent this quantity. This provides a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
 ### Scalar-valued Functions: Gradient
-Now, we consider the case where the functions are scalar-valued $f:U\to\mathbb{R}$ (or $\mathbb{C}$). For derivatives of such cases, we can use another trick. For any linear function $L:U\to\mathbb{R}$, there exists a vector its dual space that achieves the same effect with a simple inner product with the input instead. Concretely, there exists a vector $\boldsymbol{\varphi}_L\in D$, such that $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$.
+Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on inner-product spaces $U$. For derivatives of such cases, we can use another trick. By Riesz Representation Theorem, for any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L$ that achieves the same effect with a simple inner product. Concretely, $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 Therefore, for the derivative, we use $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_{\mathbf{df}(\mathbf{x})}$ and write
 
