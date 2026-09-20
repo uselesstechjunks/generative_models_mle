@@ -83,6 +83,8 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}=f(\mathbf{x})+\nabla_\mathbf{x} f\cdot\mathbf{h}
 $$
 
+
+
 ## Integration
 ### Multiple Integrals
 ### Order Swapping
