@@ -55,7 +55,7 @@ $$
 Jacobians and Gradients are usually discussed in Euclidean space, and are defined in terms of their components. In the following, we revisit them from Fréchet differentiability perspective, that, in my opinion, provides some useful insights.
 
 #### 1.4.1 Euclidean Vector-Spaces: Jacobian
-For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that function (there always is one), and then performing simple matrix-vector multiplication.
+For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can use a trick. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that transformation (there always is one - why?), and then performing simple matrix-vector multiplication.
 
 Let $f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ be the matrix of the linear function $Df(\mathbf{x})$. Then, for a sufficiently small-enough perturbation $\mathbf{h}$, the linear approximation becomes
 
