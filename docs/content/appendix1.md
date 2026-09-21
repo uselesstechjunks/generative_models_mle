@@ -86,15 +86,15 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}=f(\mathbf{x})+\nabla_\mathbf{x} f\cdot\mathbf{h}
 $$
 
+The sophisticated approach towards defining Fréchet differentiability pays off as it allows us to extend the notion of derivatives easily to functions with any normed-vector field domains, as we discuss in the following two sections.
+
 #### 1.4.3 Derivatives of Matrix-Functions: Jacobian Tensor & Gradient Matrix
 For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, the Jacobian $J_\mathbf{x}$ is simply the tensor of dimension $\mathbb{R}^{k\times m\times n}$. 
 
 For real-valued functions $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, the gradient is the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{m\times n}$ (since the first dimension of the Jacobian tensor is $1$)
 
 #### 1.4.4 Gradient of a Functional over a Space of Distributions
-The sophisticated approach towards defining Fréchet differentiability pays off as it allows us to extend the notion of derivatives easily to functions with any normed-vector field domains.
-
-TODO:
+TODO
 
 ### 1.5 Functions with Bounded Derivative: Lipschitz Functions
 Now, let's revisit the original promise of derivatives as discussed in the first section. We keep the context of functions on general normed-vector spaces $f:U\to V$. One of the ways we recognise "well-behaved" functions is by the derivatives being bounded. The notion we discuss here is Lipschitz continuity.
