@@ -42,7 +42,7 @@ then we consider the error to be negligible. We can then use the small-oh notati
 
 Clearly, this would not hold for any choice of linear function $L_\mathbf{x}:U\to V$. Let's call the set of all bounded (why bounded?) linear functions $\mathcal{L}(U,V)$. Assuming the function is differentiable, a specific choice (why unique?) $D_{\mathbf{x}}\in\mathcal{L}$ makes the error $0$ in limit. We call this specific $D_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$.
 
-Note that, as apparent from how it's defined, derivative is a function that has the same domain and codomain as $f$, i.e., $D_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $D_{\mathbf{x}}(\mathbf{h})\in V$ for every $\mathbf{h}\in U$.
+Note that the derivative is a function that has the same domain and codomain as $f$, i.e., $D_{\mathbf{x}}:U\to V$. It is linear by definition, and it produces $D_{\mathbf{x}}(\mathbf{h})\in V$ for every $\mathbf{h}\in U$.
 
 ### 1.2.2 Differential Operator
 Since the derivative $D_{\mathbf{x}}$ depends on $\mathbf{x}$, we can also identify an operator, $Df:\mathbf{x}\mapsto D_{\mathbf{x}}$, that produces this derivative for every $\mathbf{x}$ in domain. This is the differential operator, $Df:U\to\mathcal{L}(U,V)$. Using this notation, the approximation becomes
@@ -52,7 +52,7 @@ f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+D_{\mathbf{x}}(\mathbf{h})=f(\math
 $$
 
 ### 1.4 Special Cases
-Jacobians and Gradients are usually defined in terms of their components. In the following, we revisit them from a slightly different perspective connected to Fréchet differentiability that, in my opinion, provides some valuable insights.
+Jacobians and Gradients are usually discussed in Euclidean space, and are defined in terms of their components. In the following, we revisit them from Fréchet differentiability perspective, that, in my opinion, provides some useful insights.
 
 #### 1.4.1 Euclidean Vector-Spaces: Jacobian
 For functions involving finite dimensions (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can simplify this. In finite dimension, the effect of applying any linear function can always be achieved by finding a matrix of that function (there always is one), and then performing simple matrix-vector multiplication.
