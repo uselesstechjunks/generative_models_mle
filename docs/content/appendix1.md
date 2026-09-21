@@ -66,7 +66,7 @@ $$
 We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}\equiv f'(\mathbf{x})$ to represent this quantity. With this, we obtain a simplified evaluation rule for our approximation similar to the scalar-case, as $J_{\mathbf{x}}\mathbf{h}$ is simple matrix-vector multiplication.
 
 #### 1.4.2 Scalar-valued Functions on Hilbert Spaces: Gradient Vector
-Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on complete inner-product spaces $U$ (Hilbert space). For derivatives of such cases, we can use another trick. For any bounded linear functional $L:U\to\mathbb{R}$, there exists a unique vector $\boldsymbol{\varphi}_L\in U$ that achieves the same effect with a simple inner product (Riesz Representation Theorem), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
+Let's consider scalar-valued functions $f:U\to\mathbb{R}$ (or $\mathbb{C}$) (called functionals) on inner-product spaces $U$. As long as the space is complete under this inner-product (Hilbert space), we can use another trick for derivatives of such cases. For any bounded linear functional $L\in\mathcal{L}(U, V)$, there exists a unique vector $\boldsymbol{\varphi}_L\in U$ that achieves the same effect with a simple inner product (Riesz Representation Theorem - why does this hold?), i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle$. 
 
 For the derivative, we use a special notation $\nabla$ to define this vector, $\nabla_\mathbf{x} f=\boldsymbol{\varphi}_ {D_{\mathbf{x}}}$, and write
 
