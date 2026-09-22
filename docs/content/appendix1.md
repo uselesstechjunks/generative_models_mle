@@ -126,7 +126,7 @@ $$
 
 Under this definition, $\Vert Df\Vert_{\text{op}}\leq L$ is a necessary and sufficient condition for the function being L-Lipschitz.
 
-For Euclidean spaces, this implies that the Jacobian's largest singular value (i.e., the spectral norm) has upper bound $L$.
+For Euclidean spaces, this implies that the Jacobian's largest singular value (spectral norm) has upper bound $L$.
 
 ### 1.7 The Total Derivative Theorem
 ### 1.8 Symmetry of Second Derivatives: Clairaut's Theorem
