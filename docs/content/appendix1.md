@@ -28,7 +28,7 @@ $$
 \delta\mathbf{f}=\underbrace{L_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{linear}}+\underbrace{E_{\mathbf{x}}(\boldsymbol{\delta})}_{\text{non-linear}}
 $$
 
-I used subscript for $\mathbf{x}$ and kept $\boldsymbol{\delta}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is constant here, as we vary the perturbation $\boldsymbol{\delta}$.
+I used subscript for $\mathbf{x}$ and kept $\boldsymbol{\delta}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed, as we vary only the perturbation $\boldsymbol{\delta}$.
 
 The motivation behind this decomposition is this: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\boldsymbol{\delta})$ represents the "error" in our approximation.
 
