@@ -16,7 +16,7 @@ $$
 f(x+h)\approx f(x)+f'(x)h
 $$
 
-This approximation is "good" when h is small and it is exact (not an approximation) as $h\to 0$.
+This approximation is "good" when h is small.
 
 For functions involving general vector spaces, ratios are not defined as above. In the following section, we discuss two approaches that captures differentiability with slightly different machinery.
 
@@ -37,16 +37,16 @@ The motivation behind the decomposition is this: if the non-linear part is negli
 To bound this error, we introduce the ratio of the norms (possible since norms produce reals). To define this clearly, let's use $\Vert\cdot\Vert_\mathcal{U}$ to denote the norm on the input space $\mathcal{U}$, and similarly for $\mathcal{V}$. As we reduce the magnitude of the perturbation, if the magnitude of the error-term reduces faster (i.e., their ratio vanishes in the limit), 
 
 $$
-\lim\limits_{\mathbf{h}\to 0} \frac{\Vert E_{\mathbf{x}}(\mathbf{h}) \Vert_\mathcal{U}}{\Vert \mathbf{h}\Vert_\mathcal{V}}= 0,
+\lim\limits_{\mathbf{h}\to 0} \frac{\Vert E_{\mathbf{x}}(\mathbf{h}) \Vert_\mathcal{V}}{\Vert \mathbf{h}\Vert_\mathcal{U}}= 0,
 $$
 
 then we consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-oh notation for this error, i.e., $E_{\mathbf{x}}(\mathbf{h})=o(\Vert\mathbf{h}\Vert)$ to capture this, and we consider the function to be "differentiable". 
 
 Note that our decomposition doesn't require a unique $L_\mathbf{x}$ to be valid. For any $L_\mathbf{x}$ we pick, there would be a corresponding $E_\mathbf{x}$. Clearly, the limit doesn't vanish for any arbitrary $L_\mathbf{x}$ we pick.
 
-Let's call the set of all bounded (why bounded?) linear functions $\mathcal{L}(\mathcal{U},V)$. Assuming $f$ is differentiable, a specific (why specific?) $D_{\mathbf{x}}\in\mathcal{L}$ makes the error $0$ in limit. We call this unique $D_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$.
+Let's call the set of all bounded (why bounded?) linear maps $\mathcal{L}(\mathcal{U},V)$. Assuming $f$ is differentiable, a specific (why specific?) $D_{\mathbf{x}}\in\mathcal{L}$ makes the error negligible in limit. We call this unique $D_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$.
 
-Note that the derivative is a function that has the same domain and co-domain as $f$, i.e., $D_{\mathbf{x}}:\mathcal{U}\to V$. It is linear by definition, and it produces $D_{\mathbf{x}}(\mathbf{h})\in \mathcal{V}$ for every $\mathbf{h}\in \mathcal{U}$, so that the following equality (note, equality) holds:
+Note that the derivative has the same domain and co-domain as $f$, i.e., $D_{\mathbf{x}}:\mathcal{U}\to V$. It is linear by definition, and it produces $D_{\mathbf{x}}(\mathbf{h})\in \mathcal{V}$ for every $\mathbf{h}\in \mathcal{U}$, so that the following equality (note, equality) holds:
 
 $$
 f(\mathbf{x}+\mathbf{h})=f(\mathbf{x})+D_{\mathbf{x}}(\mathbf{h})+o(\Vert\mathbf{h}\Vert)
@@ -55,7 +55,7 @@ $$
 $f(\mathbf{x})+D_{\mathbf{x}}(\mathbf{h})$ only becomes a "good-enough" approximation of $f(\mathbf{x}+\mathbf{h})$ as $\mathbf{h}\to\mathbf{0}$.
 
 #### 1.2.2 Differential Operator
-Since the derivative $D_{\mathbf{x}}$ depends on $\mathbf{x}$, we can identify an operator, $Df:\mathbf{x}\mapsto D_{\mathbf{x}}$, that produces this derivative function for every $\mathbf{x}$ in domain. This is the differential operator, $Df:\mathcal{U}\to\mathcal{L}(\mathcal{U},\mathcal{V})$. Using this notation, the approximation for small $\mathbf{h}$ becomes
+Since the derivative $D_{\mathbf{x}}$ depends on $\mathbf{x}$, we can identify an operator, $Df:\mathbf{x}\mapsto D_{\mathbf{x}}$, that produces this derivative linear map for every $\mathbf{x}$ in domain. This is the differential operator, $Df:\mathcal{U}\to\mathcal{L}(\mathcal{U},\mathcal{V})$. Using this notation, the approximation for small $\mathbf{h}$ becomes
 
 $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+D_{\mathbf{x}}(\mathbf{h})=f(\mathbf{x})+ \left(Df(\mathbf{x})\right)(\mathbf{h})
@@ -70,9 +70,9 @@ I've used the functional notation over the traditional one ($Df(\mathbf{x})[\mat
 Jacobians and Gradients are typically discussed in Euclidean space, and are defined in terms of their components. In the following, we revisit them from Fréchet differentiability perspective which, in my opinion, provides useful insights on extending these ideas to more complex cases.
 
 #### 1.4.1 Euclidean Vector-Spaces: Jacobian
-For functions involving Euclidean spaces (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can use a trick. In finite dimension, the effect of applying any linear function can be achieved by finding a matrix of that transformation (there always is one - why?), and then performing a matrix-vector multiplication.
+For functions involving Euclidean spaces (e.g., $f:\mathbb{R}^n\to\mathbb{R}^m$), we can use a trick. In finite dimension, the effect of applying any linear map can be achieved by finding a matrix of that transformation (there always is one - why?), and then performing a matrix-vector multiplication.
 
-Let $f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ be the matrix of the linear function $Df(\mathbf{x})$. Then, for a small-enough perturbation $\mathbf{h}$, the linear approximation becomes
+Let $f'(\mathbf{x})\in\mathbb{R}^{m\times n}$ be the matrix of the linear map $Df(\mathbf{x})$. Then, for a small-enough perturbation $\mathbf{h}$, the linear approximation becomes
 
 $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \left(Df(\mathbf{x})\right)(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
