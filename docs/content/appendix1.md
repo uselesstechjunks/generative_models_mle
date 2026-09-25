@@ -24,19 +24,13 @@ $$
 \lim\limits_{h\to 0}\frac{f(x+h)-f(x)-f'(x)h}{h}=0
 $$
 
-We can stop here. But let's take it one step further. The above is equivalent to saying that if we kept the error in our approximation (say, $\epsilon$) from whichever direction (positive or negative) as a dangling term in the numerator
+We can stop here. But let's take it one step further. The numerator, if we think about it, is essentially capturing the error in our approximation (say, $\epsilon$). So, what we have is identical to
 
 $$
-\frac{f(x+h)-f(x)-f'(x)h-\vert\epsilon\vert}{h}
+\lim\limits_{h\to 0} \frac{\epsilon}{h}=0.
 $$
 
-then it must be the case that
-
-$$
-\lim\limits_{h\to 0} \frac{\vert\epsilon\vert}{h}=0.
-$$
-
-Why bother with this? Unlike the scalar-case, for functions involving general vector spaces, ratios are not defined. But, as we discuss in the following section, this equivalence connects it to how differentiability is defined in such cases.
+Why bother with this? Unlike the scalar-case, for functions involving general vector spaces, there is no notion of a division between vectors. But, as we discuss in the following section, this equivalence connects it to how differentiability is defined in such cases.
 
 ### 1.2 General Normed Vector-Spaces
 Let's consider functions of the form $f:\mathcal{U}\to \mathcal{V}$, where $\mathcal{U}$ and $\mathcal{V}$ are arbitrary normed vector spaces (see Just Enough Linear Algebra). The change in the output under a perturbation $\mathbf{h}\in \mathcal{U}$ is the vector $\Delta\mathbf{f}\in\mathcal{V}:=f(\mathbf{x}+\mathbf{h})-f(\mathbf{x})$. It depends on the $\mathbf{h}$ as well $\mathbf{x}$.
@@ -62,7 +56,7 @@ $$
 \lim\limits_{\mathbf{h}\to\mathbf{0}} \frac{\Vert E_\mathbf{x}(\mathbf{h}) \Vert_\mathcal{V}}{\Vert \mathbf{h}\Vert_\mathcal{U}}= 0,
 $$
 
-That is, we can consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation $E_\mathbf{x}(\mathbf{h})=o(\Vert\mathbf{h}\Vert)$ to capture this, and we declare the function to be "differentiable". 
+That is, we can consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation ($\Vert E_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}=o(\Vert\mathbf{h}\Vert_\mathcal{U})$ to capture this, and we declare the function to be "differentiable". 
 
 Note that we didn't rely on a specific $L_\mathbf{x}$ for our decomposition to be valid: for any $L_\mathbf{x}$ we pick, one can find a corresponding $E_\mathbf{x}$. Clearly, the ratio doesn't vanish in the limit for any arbitrary choice of $L_\mathbf{x}$. There must be something special about the $L_\mathbf{x}$ that achieves that. A question one might ask: does special necessarily mean unique. The answer is yes. See Appendix 1 for a convincing argument.
 
@@ -102,7 +96,7 @@ With this, we get an evaluation rule similar to the scalar-case. We call the mat
 #### 1.4.2 Scalar-valued Functions on Hilbert Spaces: Gradient Vector
 Gradients are much more interesting than they appear at a first glance. To see why, let's consider scalar-valued functions $f:\mathcal{H}\to\mathbb{R}$ on complete inner-product spaces $\mathcal{H}$ (see Just Enough Linear Algebra). 
 
-Here, we can use another trick for the derivatives. For every linear-map $L:\mathcal{H}\to\mathbf{R}$, we'd find a unique vector $\boldsymbol{\varphi}_L$ occupying the same input space $\mathcal{H}$ that achieves the same effect as applying $L$ with a simple inner product instead, i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle _{\mathcal{H}}$ (Riesz Representation Theorem. See Just Enough Linear Algebra).
+Here, we can use another trick for the derivatives. For every bounded linear-map $L:\mathcal{H}\to\mathbf{R}$, we'd find a unique vector $\boldsymbol{\varphi}_L$ occupying the same input space $\mathcal{H}$ that achieves the same effect as applying $L$ with a simple inner product instead, i.e., $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle _{\mathcal{H}}$ (Riesz Representation Theorem. See Just Enough Linear Algebra).
 
 For the derivative of $f$ at $\mathbf{x}$, we reserve a special notation $\nabla_\mathbf{x} f$ instead of $\varphi$ for this vector, so that we can write
 
@@ -128,7 +122,7 @@ The sophisticated machinery for differentiability a la Fréchet pays off as it a
 #### 1.5.1 Derivatives of Matrix-Functions: Jacobian Tensor & Gradient Matrix
 Recall that the space of matrices is a vector space on its own right, and the fact that matrix norms exist. For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, all of the discussion around derivatives work. The only change is in the dimensions involved:
 
-- The Jacobian $J_\mathbf{x}$ is the tensor of dimension $\mathbb{R}^{k\times m\times n}$ (output dimension always is the first dimension).
+- The Jacobian $J_\mathbf{x}$ is the tensor of shape $\mathbb{R}^{k\times m\times n}$ (output dimension always is the first dimension).
 - For $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, we also have the gradient but as the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{m\times n}$ (since the first dimension of the Jacobian is $1$)
 
 #### 1.5.2 Gradient of a Functional involving Probability Densities
