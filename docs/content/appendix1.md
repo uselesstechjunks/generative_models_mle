@@ -1,15 +1,15 @@
 # Just Enough Calculus
 
 ## 1. Differentiation
-Given a function, a useful inquiry regarding its nature is: what happens to the output when we perturb the input slightly. Concretely, considering additive perturbations $x\mapsto x+h$, we ask by how much the output moves: $f(x)\mapsto f(x+h)$. 
+Given a function, a useful question regarding its nature is: what happens to the output when we poke the input slightly. More formally, considering additive perturbations $x\mapsto x+h$, we ask by how it make the output move: $f(x)\mapsto f(x+h)$. 
 
-The goal often is: if the function doesn't fluctuate drastically (i.e., we have some bound on how much it moves for small-enough perturbations), we can use it in certain cases that otherwise would be impossible.
+The goal often is: if a function is "nice" (doesn't fluctuate drastically; i.e., we have some bound on how much it fluctuates for small-enough perturbations), we can use it in certain cases that otherwise would be impossible.
 
 ### 1.1 Scalar Functions
-As you would recall, for scalar-valued functions on scalar domains $f:\mathbb{R}\to\mathbb{R}$, this is typically introduced as a ratio (since it's possible to compute ratios with scalars) and passing the limit of the perturbation to 0. When this limit exists, we define
+As you might recall, for scalar-valued functions on scalar domains $f:\mathbb{R}\to\mathbb{R}$, this is typically introduced as a ratio (since it's possible to compute ratios with scalars) and passing the limit of the perturbation to 0. When this limit exists, we define
 
 $$
-f'(x)\equiv\frac{\mathop{df}}{\mathop{dx}}:=\lim\limits_{h\to 0}\frac{f(x+h)-f(x)}{h}
+f'(x):=\lim\limits_{h\to 0}\frac{f(x+h)-f(x)}{h} \left[\equiv\frac{\mathop{df}}{\mathop{dx}}\right].
 $$
 
 With this quantity, the changed output under any perturbations $h$ can be approximated by performing a simple multiplication $f'(x)h$, followed by an addition. This approximation is "decent" when $h$ is small. That is, we claim, without re-evaluating the function at $x+h$, that:
@@ -18,41 +18,43 @@ $$
 f(x+h)\approx f(x)+f'(x)h
 $$
 
-Rewriting the limit as the following makes this approximation obvious:
+To see why this approximation makes sense, rewriting the definition by subtracting $f'(x)$ from both sides and pulling it in inside the ratio helps:
 
 $$
 \lim\limits_{h\to 0}\frac{f(x+h)-f(x)-f'(x)h}{h}=0
 $$
 
-which is equivalent to saying that if we had any leftover term in the numerator, say, $\epsilon$, in the ratio
+We can stop here. But let's take it one step further. The above is equivalent to saying that if we consider the error (say, $\epsilon$) in our approximation from whichever direction (positive or negative) as a dangling term in the numerator
 
 $$
-\frac{f(x+h)-f(x)-f'(x)h-\epsilon}{h}
+\frac{f(x+h)-f(x)-f'(x)h-\vert\epsilon\vert}{h}
 $$
 
-then
+then 
 
 $$
-\lim\limits_{h\to 0}\frac{\epsilon}{h}=0
+\lim\limits_{h\to 0} \frac{\vert\epsilon\vert}{h}=0.
 $$
 
-For functions involving general vector spaces, unlike the scalar-case ratios are not defined. But, as we discuss in the following section, the approach capturing differentiability is actually connected to this new angle.
+Why bother? Here's why: unlike the scalar-case, for functions involving general vector spaces, ratios are not defined. But, as we discuss in the following section, this new angle connects it to how differentiability is defined in such cases.
 
 ### 1.2 General Normed Vector-Spaces
-Let's consider functions of the form $f:\mathcal{U}\to \mathcal{V}$, where $\mathcal{U}$ and $\mathcal{V}$ are arbitrary normed vector spaces (i.e., we can compute length of vectors in these spaces). The change in the output under a perturbation $\mathbf{h}\in \mathcal{U}$ is the vector, $\Delta\mathbf{f}\in\mathcal{V}:=f(\mathbf{x}+\mathbf{h})-f(\mathbf{x})$, that depends on the $\mathbf{h}$ as well as the point $\mathbf{x}$ that we pin it on.
+Let's consider functions of the form $f:\mathcal{U}\to \mathcal{V}$, where $\mathcal{U}$ and $\mathcal{V}$ are arbitrary normed vector spaces (see Just Enough Linear Algebra). The change in the output under a perturbation $\mathbf{h}\in \mathcal{U}$ is the vector $\Delta\mathbf{f}\in\mathcal{V}:=f(\mathbf{x}+\mathbf{h})-f(\mathbf{x})$, that depends on the $\mathbf{h}$ as well as the point $\mathbf{x}$ that we pin it on.
 
 #### 1.2.1 Fréchet Differentiability
-The influence of this perturbation on the output can be decomposed of 2 parts regardless of whatever $\mathbf{h}$ we pick - a part that changes linearly with $\mathbf{h}$, and another part that captures all the leftover non-linear influences:
+The influence of $\mathbf{h}$ on the output can be understood by breaking $\Delta\mathbf{f}$ down into 2 parts that stays valid regardless of $\mathbf{h}$ - a part that changes linearly with $\mathbf{h}$, and another part that captures all the leftover non-linear influences:
 
 $$
 \Delta\mathbf{f}=\underbrace{L_\mathbf{x}(\mathbf{h})}_ {\text{linear}}+\underbrace{E_\mathbf{x}(\mathbf{h})}_{\text{non-linear}}
 $$
 
-(I used subscript for $\mathbf{x}$ and kept $\mathbf{h}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed. We vary only the perturbation $\mathbf{h}$.)
+(I used subscript for $\mathbf{x}$ and left $\mathbf{h}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed. We vary only the perturbation $\mathbf{h}$.)
 
 The motivation here is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of $\Delta\mathbf{f}$. Under this framing, $E_\mathbf{x}(\mathbf{h})$ represents the "error" in our approximation.
 
-To bound this error, we introduce the ratio of the norms (similar to the ratio $\epsilon/h$ we discussed for the scalar case - possible since norms produce reals). To define this cleanly, let's use $\Vert\cdot\Vert_\mathcal{U}$ for the norm on the input space $\mathcal{U}$, and similarly $\Vert\cdot\Vert_\mathcal{V}$ for $\mathcal{V}$. 
+To bound this error, similar to the ratio $\vert\epsilon\vert/h$ we discussed in the scalar case, we consider the ratio of the norms (possible since norms produce reals). 
+
+To define this cleanly, let's use $\Vert\cdot\Vert_\mathcal{U}$ for the norm on the input space $\mathcal{U}$, and similarly $\Vert\cdot\Vert_\mathcal{V}$ for $\mathcal{V}$. 
 
 As we reduce the magnitude of the perturbation, if the magnitude of the error-term reduces faster (i.e., their ratio vanishes in the limit), 
 
@@ -60,24 +62,10 @@ $$
 \lim\limits_{\mathbf{h}\to\mathbf{0}} \frac{\Vert E_\mathbf{x}(\mathbf{h}) \Vert_\mathcal{V}}{\Vert \mathbf{h}\Vert_\mathcal{U}}= 0,
 $$
 
-then we consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation $E_\mathbf{x}(\mathbf{h})=o(\Vert\mathbf{h}\Vert)$ for this error to capture this, and we consider the function to be "differentiable". 
+then we consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation $E_\mathbf{x}(\mathbf{h})=o(\Vert\mathbf{h}\Vert)$ to capture this, and we consider the function to be "differentiable". 
 
 ##### Uniqueness
-Note that we don't need a specific $L_\mathbf{x}$ for our decomposition to be valid. For any $L_\mathbf{x}$ we pick, one can find a corresponding $E_\mathbf{x}$ anyway. Clearly, the ratio doesn't vanish in the limit for any arbitrary choice of $L_\mathbf{x}$. There must be something special about $L_\mathbf{x}$ that achieves that. A question one might ask: does special necessarily mean unique here.
-
-Let's consider another candidate $L'_ \mathbf{x}$ (and its corresponding $E'_ \mathbf{x}$) and see if we can convince ourselves that $L_ \mathbf{x}=L'_ \mathbf{x}$. 
-
-We first do some algebra using the decomposition $E_ \mathbf{x}(\mathbf{h})=\Delta\mathbf{f} - L_\mathbf{x}(\mathbf{h})$:
-
-$$
-\frac{\Vert E_\mathbf{x}(\mathbf{h})-E'_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}=\frac{\Vert \left(\Delta\mathbf{f} - L_\mathbf{x}(\mathbf{h})\right) -\left(\Delta\mathbf{f} - L'_\mathbf{x}(\mathbf{h})\right)\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}=\frac{\Vert L'_\mathbf{x}(\mathbf{h})-L_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}
-$$
-
-The numerator we get on the right is itself a linear map.
-
-$$
-
-$$
+Note that we didn't rely on a specific $L_\mathbf{x}$ for our decomposition to be valid. For any $L_\mathbf{x}$ we pick, one can find a corresponding $E_\mathbf{x}$. Clearly, the ratio doesn't vanish in the limit for any arbitrary choice of $L_\mathbf{x}$. There must be something special about the $L_\mathbf{x}$ that achieves that. A question one might ask: does special necessarily mean unique. The answer is yes. See Appendix 1 for a convincing argument.
 
 Let's call the set of all bounded (why bounded?) linear maps $\mathcal{L}(\mathcal{U},V)$. Assuming $f$ is differentiable, a specific (why specific?) $D_{\mathbf{x}}\in\mathcal{L}$ makes the error negligible in limit. We call this unique $D_{\mathbf{x}}$ the derivative of the function $f$ at $\mathbf{x}$.
 
@@ -185,3 +173,19 @@ For Euclidean spaces, this implies that the Jacobian's largest singular value (s
 ### 2.6 Integration by Parts & Divergence: The Adjoint Perspective
 
 ## Operator View of the Gradient
+
+# Appendix
+## 1. Uniqueness of Fréchet Derivative
+Let's consider another candidate for the derivative at $\mathbf{x}$, $L'_ \mathbf{x}$ (and its corresponding $E'_ \mathbf{x}$) and see if we can convince ourselves that $L_ \mathbf{x}=L'_ \mathbf{x}$. 
+
+We first do some algebra using the decomposition $E_ \mathbf{x}(\mathbf{h})=\Delta\mathbf{f} - L_\mathbf{x}(\mathbf{h})$:
+
+$$
+\frac{\Vert E_\mathbf{x}(\mathbf{h})-E'_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}=\frac{\Vert \left(\Delta\mathbf{f} - L_\mathbf{x}(\mathbf{h})\right) -\left(\Delta\mathbf{f} - L'_\mathbf{x}(\mathbf{h})\right)\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}=\frac{\Vert L'_\mathbf{x}(\mathbf{h})-L_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}
+$$
+
+The numerator we get on the right is itself a linear map.
+
+$$
+
+$$
