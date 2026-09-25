@@ -1,38 +1,56 @@
 # Just Enough Calculus
 
 ## 1. Differentiation
-Given a function, a useful inquiry regarding its nature is: what happens to the output of the function when we perturb the input slightly. Concretely, considering additive perturbations $x\mapsto x+h$, we ask how much it affects the output, $f(x)\mapsto f(x+h)$. The goal here is: assuming that the function doesn't fluctuate drastically (i.e., we have some bound on how much it deviates for small-enough perturbations), we can establish certain properties that makes it possible to use these functions in certain cases that otherwise would be impossible.
+Given a function, a useful inquiry regarding its nature is: what happens to the output of the function when we perturb the input slightly. Concretely, considering additive perturbations $x\mapsto x+h$, we ask how much it affects the output, $f(x)\mapsto f(x+h)$. 
+
+The goal often is: if the function doesn't fluctuate drastically (i.e., we have some bound on how much it deviates for small-enough perturbations), we can use these in certain cases that otherwise would be impossible.
 
 ### 1.1 Scalar Functions
-For scalar-valued functions on scalar domains $f:\mathbb{R}\to\mathbb{R}$ this is quantified by introducing a ratio (since it's possible to compute ratios with scalars) and pushing its limit to infinitesimal additions to the input. When this limit exists, we define
+As you would recall, for scalar-valued functions on scalar domains $f:\mathbb{R}\to\mathbb{R}$ this is typically introduced as a ratio (since it's possible to compute ratios with scalars) and passing the limit of the perturbation to 0. When this limit exists, we define
 
 $$
 f'(x)\equiv\frac{\mathop{df}}{\mathop{dx}}:=\lim\limits_{h\to 0}\frac{f(x+h)-f(x)}{h}
 $$
 
-With this quantity, the changed output under any perturbations $h$ can be approximated well by performing a simple multiplication $f'(x)h$, followed by a simple addition. That is, we claim, without having to re-evaluate the function at $x+h$, that:
+With this quantity, the changed output under any perturbations $h$ can be approximated by performing a simple multiplication $f'(x)h$, followed by an addition. This approximation is "good" when $h$ is small. That is, we claim, without re-evaluating the function at $x+h$, that:
 
 $$
 f(x+h)\approx f(x)+f'(x)h
 $$
 
-This approximation is "good" when h is small.
+Rewriting the limit as the following makes this approximation apparent:
 
-For functions involving general vector spaces, ratios are not defined as above. In the following section, we discuss two approaches that captures differentiability with slightly different machinery.
+$$
+\lim\limits_{h\to 0}\frac{f(x+h)-f(x)-f'(x)h}{h}=0
+$$
+
+which is equivalent to saying that if we had anything leftover term in the numerator, say, $\epsilon$, in the ratio
+
+$$
+\frac{f(x+h)-f(x)-f'(x)h-\epsilon}{h}
+$$
+
+then
+
+$$
+\lim\limits_{h\to 0}\frac{\epsilon}{h}=0
+$$
+
+For functions involving general vector spaces, ratios are not defined unlike the scalar-case. However, in the following section, we discuss an approach capturing differentiability inspired from this new angle.
 
 ### 1.2 General Normed Vector-Spaces
 Let's assume we have a function $f:\mathcal{U}\to \mathcal{V}$, where $\mathcal{U}$ and $\mathcal{V}$ are arbitrary normed vector spaces (i.e., we can compute length of vectors in these spaces). The change in the output space is the vector, $\Delta\mathbf{f}:=f(\mathbf{x}+\mathbf{h})-f(\mathbf{x})$, that depends on the perturbation $\mathbf{h}\in \mathcal{U}$ as well as the point we evaluate it on (i.e., $\mathbf{x}\in \mathcal{U}$). Note that $\Delta\mathbf{f}\in \mathcal{V}$.
 
 #### 1.2.1 Fréchet Differentiability
-The change vector can be decomposed of 2 parts regardless of which $\mathbf{h}$ we pick - a part that changes linearly with $\mathbf{h}$, and another that captures all the leftover non-linear influences:
+The change vector can be decomposed of 2 parts regardless of which $\mathbf{h}$ we pick - a part that changes linearly with $\mathbf{h}$, and another that captures all the leftover non-linear influences on the output:
 
 $$
 \Delta\mathbf{f}=\underbrace{L_{\mathbf{x}}(\mathbf{h})}_ {\text{linear}}+\underbrace{E_{\mathbf{x}}(\mathbf{h})}_{\text{non-linear}}
 $$
 
-I used subscript for $\mathbf{x}$ and kept $\mathbf{h}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed, as we vary only the perturbation $\mathbf{h}$.
+(I used subscript for $\mathbf{x}$ and kept $\mathbf{h}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed, as we vary only the perturbation $\mathbf{h}$.)
 
-The motivation behind the decomposition is this: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\Delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\mathbf{h})$ represents the "error" in our approximation.
+The motivation behind the decomposition is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of the change vector $\Delta\mathbf{f}$. Under this framing, $E_{\mathbf{x}}(\mathbf{h})$ represents the "error" in our approximation.
 
 To bound this error, we introduce the ratio of the norms (possible since norms produce reals). To define this clearly, let's use $\Vert\cdot\Vert_\mathcal{U}$ to denote the norm on the input space $\mathcal{U}$, and similarly for $\mathcal{V}$. As we reduce the magnitude of the perturbation, if the magnitude of the error-term reduces faster (i.e., their ratio vanishes in the limit), 
 
