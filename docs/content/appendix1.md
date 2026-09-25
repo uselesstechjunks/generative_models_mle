@@ -44,7 +44,7 @@ $$
 
 Aside: I used subscript for $\mathbf{x}$ and left $\mathbf{h}$ as a parameter since $\mathbf{x}$ - the evaluation-point - is fixed. We're changing only the perturbation $\mathbf{h}$.
 
-The motivation here is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of $\Delta\mathbf{f}$. Under this framing, $E_\mathbf{x}(\mathbf{h})$ represents the "error" in our approximation.
+The motivation here is: if the non-linear part is negligible, we can ignore it and use the linear part as our desired approximation of $\Delta\mathbf{f}$. This is reasonable as long as the linear part itself stays bounded. Under this framing, $E_\mathbf{x}(\mathbf{h})$ represents the "error" in our approximation.
 
 To bound this error, similar to the error-ratio we discussed in the scalar case, we consider the ratio of the norms (possible since norms produce reals). 
 
@@ -56,9 +56,9 @@ $$
 \lim\limits_{\mathbf{h}\to\mathbf{0}} \frac{\Vert E_\mathbf{x}(\mathbf{h}) \Vert_\mathcal{V}}{\Vert \mathbf{h}\Vert_\mathcal{U}}= 0,
 $$
 
-That is, we can consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation ($\Vert E_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}=o(\Vert\mathbf{h}\Vert_\mathcal{U})$ to capture this, and we declare the function to be "differentiable". 
+That is, we can consider the error to be negligible for small-enough $\mathbf{h}$. We use the small-o notation ($\Vert E_\mathbf{x}(\mathbf{h})\Vert_\mathcal{V}=o(\Vert\mathbf{h}\Vert_\mathcal{U})$ to capture this, and we declare the function to be "differentiable".
 
-Note that we didn't rely on a specific $L_\mathbf{x}$ for our decomposition to be valid: for any $L_\mathbf{x}$ we pick, one can find a corresponding $E_\mathbf{x}$. Clearly, the ratio doesn't vanish in the limit for any arbitrary choice of $L_\mathbf{x}$. There must be something special about the $L_\mathbf{x}$ that achieves that. A question one might ask: does special necessarily mean unique. The answer is yes. See Appendix 1 for a convincing argument.
+Note that we didn't rely on a specific constraint on $L_\mathbf{x}$ (except boundedness) for our decomposition to be valid: for any $L_\mathbf{x}$ we pick, one can find a corresponding $E_\mathbf{x}$. Clearly, the ratio doesn't vanish in the limit for any arbitrary choice of $L_\mathbf{x}$. There must be something special about the $L_\mathbf{x}$ that achieves that. A question one might ask: does special necessarily mean unique. The answer is yes. See Appendix 1 for a convincing argument.
 
 As it's unique, it helps to denote it with a special symbol $L^\ast_\mathbf{x}$. We call it the derivative of $f$ at $\mathbf{x}$.
 
