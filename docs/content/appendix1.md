@@ -36,7 +36,7 @@ Why bother with this? Unlike the scalar-case, for functions involving general ve
 Let's consider functions of the form $f:\mathcal{U}\to \mathcal{V}$, where $\mathcal{U}$ and $\mathcal{V}$ are arbitrary normed vector spaces (see Just Enough Linear Algebra). The change in the output under a perturbation $\mathbf{h}\in \mathcal{U}$ is the vector $\Delta\mathbf{f}\in\mathcal{V}:=f(\mathbf{x}+\mathbf{h})-f(\mathbf{x})$. It depends on the $\mathbf{h}$ as well $\mathbf{x}$.
 
 #### 1.2.1 Fréchet Differentiability
-The influence of $\mathbf{h}$ on the output can be analysed by breaking $\Delta\mathbf{f}$ down into 2 parts that stays valid regardless of $\mathbf{h}$ - a part that scales linearly with $\mathbf{h}$, and another part that captures all the leftover non-linear influences:
+The influence of $\mathbf{h}$ on the output can be analysed by breaking $\Delta\mathbf{f}$ down into 2 parts - a part that scales linearly with $\mathbf{h}$, and another part that captures all the leftover non-linear influences. This breakfown stays valid regardless of $\mathbf{h}$.
 
 $$
 \Delta\mathbf{f}=\underbrace{L_\mathbf{x}(\mathbf{h})}_ {\text{linear}}+\underbrace{E_\mathbf{x}(\mathbf{h})}_{\text{non-linear}}
