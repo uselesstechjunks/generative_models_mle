@@ -99,12 +99,14 @@ $$
 f(\mathbf{x}+\mathbf{h})\approx f(\mathbf{x})+ \left(Df(\mathbf{x})\right)(\mathbf{h})=f(\mathbf{x})+f'(\mathbf{x})\mathbf{h}
 $$
 
-With this, we get an evaluation rule similar to the scalar-case. We call the matrix the Jacobian matrix, and use $J_{\mathbf{x}}$ for it.
+With this, we get an evaluation rule similar to the scalar-case. We call the matrix the Jacobian, and use the notation $J_{\mathbf{x}}f$.
 
 #### 1.4.2 Scalar-valued Functions on Hilbert Spaces: Gradient Vector
-Gradients are much more interesting than they appear at a first glance. To see why, let's consider scalar-valued functions $f:\mathcal{H}\to\mathbb{R}$ on complete inner-product spaces $\mathcal{H}$ (see Just Enough Linear Algebra). 
+Gradients are much more interesting than they appear at first. In this section, we discuss a slightly different perspective on what they are.
 
-Here, we can use another trick for the derivatives. For every bounded linear-transform $L:\mathcal{H}\to\mathbb{R}$, we'd find a unique vector $\boldsymbol{\varphi}_L$ inside $\mathcal{H}$ itself that replicates effect of transforming via $L$. It does so with a simple inner product, i.e., that for every $\mathbf{h}\in\mathcal{H}$, we'd have $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle _{\mathcal{H}}$ (Riesz Representation Theorem. See Just Enough Linear Algebra). That holds as the space defined by the linear transforms (dual space) is the same as the original vector space, which isn't always the case.
+Let's consider scalar-valued functions $f:\mathcal{H}\to\mathbb{R}$ on complete inner-product spaces $\mathcal{H}$ (see Just Enough Linear Algebra). We can use another trick for the derivatives in such cases.
+
+For every bounded linear-transform $L:\mathcal{H}\to\mathbb{R}$, there always is a unique vector $\boldsymbol{\varphi}_L$ inside $\mathcal{H}$ itself that replicates effect of transformation via $L$. It does so with a simple inner product defined on the input space, i.e., that for every $\mathbf{h}\in\mathcal{H}$, we have $L(\mathbf{h})=\langle \boldsymbol{\varphi}_L, \mathbf{h}\rangle _{\mathcal{H}}$. This result holds as the space defined by the linear transforms (dual space) is the same as the original vector space (Riesz Representation Theorem), which isn't always the case (See Just Enough Linear Algebra).
 
 For the derivative of $f$ at $\mathbf{x}$, which is nothing but a linear transform, we reserve a special notation $\nabla_\mathbf{x} f$ (instead of $\varphi$), so that we can write
 
@@ -112,10 +114,10 @@ $$
 (Df(\mathbf{x}))(\mathbf{h})=\langle \nabla_\mathbf{x} f, \mathbf{h}\rangle _{\mathcal{H}}
 $$
 
-Now, moving our focus back to functions on Euclidean domains $f:\mathbb{R}^n\to\mathbb{R}$, this happens to be equal to the transpose of the Jacobian component-by-component to make the algebra work (as $J_\mathbf{x}$ is the row matrix $\mathbb{R}^{1\times n}$):
+Now, back to functions on Euclidean domains $f:\mathbb{R}^n\to\mathbb{R}$, this happens to be equal to the transpose of the Jacobian component-by-component to make the algebra work (as $J_\mathbf{x}f$ is the row matrix $\mathbb{R}^{1\times n}$):
 
 $$
-\nabla_\mathbf{x} f=J_\mathbf{x}^\top
+\nabla_\mathbf{x} f=J_\mathbf{x}f^\top
 $$
 
 Replacing the inner-product by its finite-dimensional counterpart, the dot-product, we rewrite our approximation rule:
@@ -130,7 +132,7 @@ The sophisticated machinery for differentiability a la Fréchet pays off as it a
 #### 1.5.1 Derivatives of Matrix-Functions: Jacobian Tensor & Gradient Matrix
 Recall that the space of matrices is a vector space on its own right, and the fact that matrix norms exist. For functions defined on matrices $f:\mathbb{R}^{m\times n}\to\mathbb{R}^k$, all of the discussion around derivatives work. The only change is in the dimensions involved:
 
-- The Jacobian $J_\mathbf{x}$ is the tensor of shape $\mathbb{R}^{k\times m\times n}$ (output dimension always is the first dimension).
+- The Jacobian $J_\mathbf{x}f$ is the tensor of shape $\mathbb{R}^{k\times m\times n}$ (output dimension always is the first dimension).
 - For $f:\mathbb{R}^{m\times n}\to\mathbb{R}$, we also have the gradient but as the matrix $\nabla_\mathbf{x} f\in \mathbb{R}^{m\times n}$ (since the first dimension of the Jacobian is $1$)
 
 #### 1.5.2 Gradient of a Functional involving Probability Densities
@@ -139,15 +141,15 @@ In this section, we consider an example that is particularly relevant for the tr
 TODO
 
 ### 1.6 Functions with Bounded Derivative: Lipschitz Functions
-Let's revisit the original promise of derivatives as discussed in the first section - helping us finding "nice" functions. We keep the context on general normed spaces. One of the ways we recognise well-behaved functions is by passing multiple inputs through it and putting bounds on how far apart they are allowed to land from one another. 
+Let's revisit the original promise of derivatives as discussed in the first section - helping us finding "nice" functions. We keep the context on general normed spaces. 
 
 #### Continuous differentiability
 Compact + continuous map -> bounded
 
 #### Lipscthitz
-Lipschitz continuity captures this formally with distances via the norm.
+One of the ways we recognise well-behaved functions is by passing multiple inputs through it and putting bounds on how far apart they are allowed to land from one another. Lipschitz continuity captures this formally with distances via the norm.
 
-We call a function L-Lipschitz as long as we can find an $L\geq 0$ such that any input pair $\mathbf{x},\mathbf{y}$ is able to bound the distance between their images by their own distance, up to a multiplicative factor of $L$, i.e.,
+We call a function L-Lipschitz as long as we can find an $L\geq 0$ such that every input pair $\mathbf{x},\mathbf{y}$ bounds the distance between their images by their own distance, up to a multiplicative factor of $L$, i.e.,
 
 $$
 \Vert f(\mathbf{x})-f(\mathbf{y})\Vert_\mathcal{V}\leq L\Vert\mathbf{x}-\mathbf{y}\Vert_\mathcal{U}
@@ -155,7 +157,7 @@ $$
 
 This should be connected to differentiability in some way as the pair can be arbitrary close to one another. We formalise this by defining a norm of the differential operator and putting $L$ as an upper bound on it. Intuitively, this norm (like every operator norm) should capture the "blow-up" factor on its input.
 
-To define the operator norm, we first use the fact that derivative at any $\mathbf{x}$ is just a linear-transform and its own norm represents the stretch-factor for any $\mathbf{h}$:
+To define the operator norm, we first use the fact that derivative at any $\mathbf{x}$ is just a linear-transform and its own norm represents the maximum stretch-factor for any $\mathbf{h}$:
 
 $$
 \Vert Df(\mathbf{x})\Vert_\infty:=\sup\limits_{\mathbf{h}\in \mathcal{U}; \mathbf{h}\neq \mathbf{0}}\frac{\Vert (Df(\mathbf{x}))(\mathbf{h})\Vert_\mathcal{V}}{\Vert\mathbf{h}\Vert_\mathcal{U}}
@@ -163,7 +165,7 @@ $$
 
 For Euclidean space, this is simply the largest singular value of the Jacobian matrix.
 
-The operator norm then captures the maximum blow-up factor of the derivatives across the entire domain:
+The operator norm then captures the maximum of those across the entire domain:
 
 $$
 \Vert Df\Vert_{\text{op}}=\sup\limits_{\mathbf{x}\in\mathcal{U}}\Vert Df(\mathbf{x})\Vert_\infty
