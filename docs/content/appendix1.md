@@ -1,7 +1,7 @@
 # Just Enough Calculus
 
 ## 1. Differentiation
-Given a function, a useful question often is: what happens to the output when we poke the input slightly. Formally, we ask by how much does the output fluctuate: $f(x)\mapsto f(x+h)$ for additive perturbations $x\mapsto x+h$.
+Given a function, a useful question often is: what happens to the output when we poke the input slightly. Formally, we ask by how much does the output fluctuate for additive perturbations $x\mapsto x+h$.
 
 If a function is "nice" (doesn't fluctuate drastically; we have some bound on it under small-enough perturbations), in certain cases it makes things easy.
 
