@@ -1,1 +1,0 @@
-# Just Enough Differential Equations
