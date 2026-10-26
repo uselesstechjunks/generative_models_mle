@@ -1,1 +1,0 @@
-# Just Enough Stochastic Differential Equations
